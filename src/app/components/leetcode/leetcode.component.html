@@ -1,0 +1,32 @@
+<ngb-accordion #acc='ngbAccordion'>
+    <div *ngFor='let exercise of exercises'>
+        <ngb-panel>
+            <ng-template ngbPanelTitle class=''>
+                {{ makeTitle(exercise) }}
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class='row'>
+                    <div class='col-9'>
+                        <ngb-progressbar class='pbar' [value]='exercise.percentile' [ngbPopover]='runtimeTooltip(exercise.percentile)' triggers='mouseenter:mouseleave' striped='true' animated='true' [type]='colorType(exercise.percentile)' height='2.4rem'>Runtime: {{ exercise.runtime }} ms</ngb-progressbar>
+                    </div>
+                    <br> <br>
+                    <div [class]='problemInfoColWidth()'>
+                        <a class='btn btn-outline-secondary' [href]='exercise.solutionURL'>Solution</a> &nbsp;
+                        <a class='btn btn-outline-secondary' [href]='exercise.problemURL'>Problem</a>
+                    </div>
+                </div>
+                <div class='row scrollbox bg-dark m-3'>
+                    <div *ngIf='!isMobile' class=' col-1 ml-3 pl-3 '>
+                        <!-- don't display line numbers in mobile -->
+                        <pre class='text-white '><span *ngFor='let codeLine of exercise.code; index as i '>
+{{ i }}</span></pre>
+                    </div>
+                    <div class='col-10 ml-3 pl-3 '>
+                        <pre class='text-white '><span *ngFor='let codeLine of exercise.code; index as i '>
+{{ codeLine }}</span></pre>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-panel>
+    </div>
+</ngb-accordion>

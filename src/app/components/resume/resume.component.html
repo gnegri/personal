@@ -1,0 +1,162 @@
+<!-- header -->
+<div class='row text-justify'>
+    <div [class]='primaryColWidth()'>
+        <h1 class='display-4'>
+            Grant Negri
+        </h1>
+        <p class='text-muted'>NYC-based software developer with experience in healthcare and bioinformatics</p>
+    </div>
+
+    <div class='{{ secondaryColWidth() }} text-center'>
+        <br> <a href='https://github.com/gnegri/ ' class='btn btn-outline-primary '>GitHub</a> &nbsp;
+        <a href='https://www.linkedin.com/in/grantnegri/ ' class='btn btn-outline-primary '>LinkedIn</a>
+        <br>
+        <div class='mt-1 '>
+            <b>grantnegri@gmail.com</b>
+        </div>
+    </div>
+</div>
+<br>
+
+<!-- Experience Section -->
+<h4 class='sectionHeader '>EXPERIENCE</h4>
+
+<!-- Epic -->
+<!-- Intro Row -->
+<div class='row '>
+    <div [class]='primaryColWidth()'>
+        <h5><b>Epic Systems Corporation</b>, Madison, WI</h5>
+        <h6>Technical Support Engineer, Oncology</h6>
+    </div>
+
+    <div [class]='secondaryColWidth()'>
+        <!-- <h6 class='text-muted '>3 Yrs</h6>-->
+        <h6 class='text-muted {{ dateTextAlign() }}'>06.2015 - 06.2018</h6>
+    </div>
+</div>
+
+<!-- Body -->
+<div class='row '>
+    <div class='col-11 '>
+        <p>I was involved in both software development and technical support for clients on the oncology module of Epic’s software suite.</p>
+        <p>I designed, developed, and helped deploy development projects and bug fixes. I was manager and lead developer on a project to reduce wait times for treatment, which won a module-wide award and was highlighted in a major update.
+        </p>
+        <p>I worked with multiple health care systems, including Johns Hopkins Medicine and Ballad Health System. I assisted IT teams and leadership at these clients with project management, custom development, system performance, data analysis, and their
+            reporting needs. At Ballad Health System, I helped implement software configuration for the 340B program, which has saved them tens of thousands per month on drug costs and
+            <mark (click)='isCollapsed=! isCollapsed ' [attr.aria-expanded]='!isCollapsed ' aria-controls='source1 '>was a contributing factor in changing two hospitals' revenue from a net loss to a net profit.</mark>
+        </p>
+    </div>
+</div>
+
+<!-- Toggle section for 340B source -->
+<div id='source1' [ngbCollapse]='isCollapsed'>
+    <div class='card {{ sourceCardWidth() }}'>
+        <img class='card-img-bottom' src='/assets/WHS_operating_losses.png'>
+        <div class='card-body'>
+            “While Wellmont’s Lonesome Pine Hospital and Hawkins County Memorial Hospital show operating gains, these gains are only the result of their participation in the federal 340B drug purchasing program, which enables them to purchase many outpatient drugs
+            (primarily for chemotherapy) at the very low federal government cost. However, Hawkins County Memorial Hospital lost its 340B eligibility as of August 22, 2016, and it is therefore no longer profitable.” <br>
+            <a class='source' href='http://www.vdh.virginia.gov/content/uploads/sites/96/2017/04/Response-12.pdf'>Source</a>
+        </div>
+    </div>
+    <br>
+</div>
+
+
+<!-- Brent Lab -->
+<!-- Intro Row -->
+<div class='row'>
+    <div [class]='primaryColWidth()'>
+        <h5><b>Washington University School of Medicine</b>, St. Louis MO</h5>
+        <h6>Research Assistant, Center for Genome Sciences and Systems Biology</h6>
+    </div>
+
+    <div [class]='secondaryColWidth()'>
+        <!-- <h6 class='text-muted'>1.2 Yrs</h6>-->
+        <h6 class='text-muted {{ dateTextAlign() }}'>02.2014 - 04.2015</h6>
+    </div>
+</div>
+
+<!-- Body -->
+<div class='row'>
+    <div class='col-11'>
+        <p>I worked with Dr. Michael Brent and doctoral candidates on a project to link gene regulation to metabolism. I was responsible for both wet lab bench work and development to validate and analyze collected data using Mathematica.</p>
+    </div>
+</div>
+
+<!-- Education and Misc -->
+<!-- Education -->
+<div class='row'>
+    <div [class]='primaryColWidth()'>
+        <h4 class='sectionHeader'>EDUCATION</h4>
+
+        <!-- Intro Row -->
+        <div class='row'>
+            <div [class]='primaryColWidth()'>
+                <h5><b>Washington University in St. Louis</b>, MO</h5>
+            </div>
+
+            <div *ngIf='!isMobile' [class]='secondaryColWidth()'>
+                <h6 class='text-muted'>08.2011 - 05.2015</h6>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-12'>
+                <h6>Biology - Computational Biology and Genomics, Minor in Bioinformatics</h6>
+            </div>
+
+        </div>
+
+        <div *ngIf='isMobile' class='row'>
+            <div class='col-12'>
+                <h6 class='text-muted'>08.2011 - 05.2015</h6>
+            </div>
+        </div>
+
+        <!-- Body -->
+        <div class='row'>
+            <div class='col-10'>
+                <ul class='list-group list-group-flush'>
+                    <li class='list-group-item'>Dean’s List, Fall 2014</li>
+                    <li class='list-group-item'>Zeta Beta Tau, Philanthropy and Community Service Chair</li>
+                    <li class='list-group-item'>Relevant Coursework: <br>
+                        <a href='http://bio5495.wustl.edu/' class='pl-5'>Algorithms for Computational Biology [Graduate-level]</a> <br>
+                        <a href='https://classes.engineering.wustl.edu/cse330' class='pl-5'>Rapid Prototype Development &amp; Creative Programming</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Misc -->
+    <div [class]='secondaryColWidth()'>
+        <h4 class='sectionHeader'>LANGUAGES <span style='font-size: 2rem;'>|</span> SKILLS</h4>
+        <div class='row'>
+            <div class='col-12'>
+                <span class='fa fa-square checked checkYes'></span>
+                <span class='preCheckYes'>&nbsp;</span>
+                <span class='fa fa-square checked checkYes'></span>
+                <span class='preCheckYes'>&nbsp;</span>
+                <span class='fa fa-square checked checkYes'></span> Caché
+                <br>
+                <span class='fa fa-square checked checkYes'></span>
+                <span class='preCheckYes'>&nbsp;</span>
+                <span class='fa fa-square checked checkYes'></span>
+                <span class='preCheckNo'>&nbsp;</span>
+                <span class='fa fa-square checked checkNo'></span> JS | Java | Mathematica
+                <br>
+                <span class='fa fa-square checked checkYes'></span>
+                <span class='preCheckNo'>&nbsp;</span>
+                <span class='fa fa-square checked checkNo'></span>
+                <span class='preCheckNo'>&nbsp;</span>
+                <span class='fa fa-square checked checkNo'></span> Angular | MySQL
+                <br>
+                <br>
+                <ul class='list-group list-group-flush'>
+                    <li class='list-group-item mt-2'>Software development life cycle</li>
+                    <li class='list-group-item'>Project management, Jira</li>
+                    <li class='list-group-item'>Healthcare industry, oncology</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

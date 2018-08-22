@@ -1,0 +1,12 @@
+<ngb-carousel *ngIf='shouldShowCarousel()' class='bg-light'>
+    <div *ngFor='let page of headerList'>
+        <ng-template ngbSlide>
+            <a [routerLink]='page.url'><img [src]='page.src' [alt]='page.alt' class='d-block carousel-image'></a>
+            <span [routerLink]='page.url' class='carousel-title'>
+              <div class='carousel-caption '>
+                      <h3>{{ page.title }}</h3>
+              </div>
+          </span>
+        </ng-template>
+    </div>
+</ngb-carousel>
