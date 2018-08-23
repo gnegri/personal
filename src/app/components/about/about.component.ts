@@ -14,10 +14,22 @@ export class AboutComponent implements OnInit {
   globals = globals;
   isMobile;
 
-  constructor() { }
+  generateDataSrc = '/assets/bash-scripts/generateproject.bash';
+  publishDataSrc = '/assets/bash-scripts/publishproject.bash';
+
+  constructor() {
+  }
 
   ngOnInit() {
     this.isMobile = globals.isMobile();
+  }
+
+  toggleGenerate() {
+    this.generateIsCollapsed = !this.generateIsCollapsed;
+  }
+
+  togglePublish() {
+    this.publishIsCollapsed = !this.publishIsCollapsed;
   }
 
 }

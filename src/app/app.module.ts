@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { PrismModule } from '@ngx-prism/core';
+
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './/app-routing.module';
@@ -13,6 +15,7 @@ import { ResumeComponent } from './components/resume/resume.component';
 import { HomeComponent } from './components/home/home.component';
 import { LeetcodeComponent } from './components/leetcode/leetcode.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { CodeFromFileComponent } from './components/code-from-file/code-from-file.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +28,17 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     ResumeComponent,
     HomeComponent,
     LeetcodeComponent,
-    CarouselComponent
+    CarouselComponent,
+    CodeFromFileComponent
   ],
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    PrismModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 import { exercises } from '../../data/extensable/LeetcodeExercises';
 import { LeetcodeProblem } from '../../classes/LeetcodeProblem';
@@ -10,7 +10,6 @@ import { globals } from '../../data/Globals';
   styleUrls: ['./leetcode.component.scss']
 })
 export class LeetcodeComponent implements OnInit {
-
   exercises: Array<LeetcodeProblem> = exercises;
   globals = globals;
   isMobile;
@@ -22,6 +21,7 @@ export class LeetcodeComponent implements OnInit {
     this.isMobile = globals.isMobile();
   }
 
+
   setActive(title: string): void {
     this.activeTitle = title;
   }
@@ -30,12 +30,29 @@ export class LeetcodeComponent implements OnInit {
     return this.activeTitle === title;
   }
 
+  lineNumbering(numLines: number): string {
+    let str = '';
+    for (let i = 1; i <= numLines; i++) {
+      str += '\n' + i;
+    }
+    return str;
+  }
+
+  datasrc(exerciseNumber: number): string {
+    // this.highlightService.retrigger();
+    return '/assets/leetcode/' + exerciseNumber + '.js';
+  }
+
   makeTitle(exercise: LeetcodeProblem): string {
     return 'Exercise ' + exercise.exercise + ': ' + exercise.title;
   }
 
   runtimeTooltip(percentile: number): string {
     return 'This solution is faster than ' + percentile + '% of other submissions in this language.';
+  }
+
+  numLines(string: string): number {
+    return string.split('\n').length - 1;
   }
 
   progressBarColWidth(): string {
@@ -48,7 +65,7 @@ export class LeetcodeComponent implements OnInit {
 
   problemInfoColWidth(): string {
     if (this.isMobile) {
-      return 'col-11 text-center';
+      return 'col-12 text-center';
     } else {
       return 'col-3 text-right';
     }

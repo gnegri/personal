@@ -1,7 +1,7 @@
 <ngb-accordion #acc='ngbAccordion'>
-    <div *ngFor='let exercise of exercises'>
+    <div *ngFor='let exercise of exercises' class=''>
         <ngb-panel>
-            <ng-template ngbPanelTitle class=''>
+            <ng-template ngbPanelTitle class='' click='retriggerHighlight()'>
                 {{ makeTitle(exercise) }}
             </ng-template>
             <ng-template ngbPanelContent>
@@ -15,18 +15,17 @@
                         <a class='btn btn-outline-secondary' [href]='exercise.problemURL'>Problem</a>
                     </div>
                 </div>
-                <div class='row scrollbox bg-dark col-11 m-3'>
-                    <div *ngIf='!isMobile' class='col-1 ml-3 pl-3 '>
-                        <!-- don't display line numbers in mobile -->
-                        <pre class='text-white '><span *ngFor='let codeLine of exercise.code; index as i '>
-{{ i }}</span></pre>
-                    </div>
-                    <div class='ml-1 pl-1'>
-                        <pre class='text-white '><span *ngFor='let codeLine of exercise.code; index as i '>
-{{ codeLine }}</span></pre>
+                <div class='row scrollbox col-11 m-3'>
+                    <div class='w-100'>
+                        <!-- <pre class=' w-100'><code class='language-javascript'>{{ exercise.code }}</code></pre>
+                        <ngx-prism language='javascript'>{{ exercise.code }}</ngx-prism> -->
+                        <!-- <pre [attr.data-src]='datasrc(exercise.exercise)'></pre> -->
+                        <app-code-from-file [datasrc]='datasrc(exercise.exercise)'></app-code-from-file>
                     </div>
                 </div>
             </ng-template>
         </ngb-panel>
     </div>
 </ngb-accordion>
+
+<br><br>
