@@ -1,12 +1,12 @@
 <!-- Intro -->
 <div class='row'>
-    <div class='col-sm-6'>
+    <div class='col-sm-5'>
         <h1 class='display-4'>About This Website</h1>
     </div>
 
-    <div class='col-sm-6'>
-        <ul class='list-group list-group-flush'>
-            <li class='list-group-item'>Built with Angular</li>
+    <div class='col-sm-7'>
+        <ul class='list-group list-group-flush' [class.text-center]='isMobile'>
+            <li class='list-group-item'>Built with Angular <a href='https://github.com/gnegri/personal'>[GitHub]</a></li>
             <li class='list-group-item'><a href='https://getbootstrap.com/'>Bootstrap</a>/<a href='https://ng-bootstrap.github.io/'>ng-Bootstrap</a> for styling</li>
             <li class='list-group-item'>Generated with styling preconfigured using
                 <mark (click)='generateIsCollapsed = !generateIsCollapsed' [attr.aria-expanded]='!generateIsCollapsed' aria-controls='generateproject'><code>generateproject.bash</code></mark></li>
@@ -35,8 +35,8 @@ path=$2
 
 # make app
 if [[ $&#123;path&#125; != '' ]]
-then
-  cd $&#123;path&#125;
+  then
+    cd $&#123;path&#125;
 fi
 ng new $&#123;appName&#125; --style=scss
 
@@ -90,7 +90,7 @@ path=$3
 
 if [[ $&#123;cname&#125; == '' ]]
   then
-  cname=$&#123;appName&#125;
+    cname=$&#123;appName&#125;
 fi
 
 # if path passed in

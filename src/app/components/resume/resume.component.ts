@@ -18,7 +18,7 @@ export class ResumeComponent implements OnInit {
     this.isMobile = globals.isMobile();
   }
 
-  sourceCardWidth() {
+  sourceCardWidth(): string {
     if (this.isMobile) {
       return 'w-100';
     } else {
@@ -26,7 +26,23 @@ export class ResumeComponent implements OnInit {
     }
   }
 
-  primaryColWidth() {
+  primaryColWidth(): string {
+    if (this.isMobile) {
+      return 'col-12';
+    } else {
+      return 'col-7';
+    }
+  }
+
+  secondaryColWidth(): string {
+    if (this.isMobile) {
+      return 'col-12';
+    } else {
+      return 'col-5';
+    }
+  }
+
+  educationHeaderColWidth(): string {
     if (this.isMobile) {
       return 'col-12';
     } else {
@@ -34,15 +50,15 @@ export class ResumeComponent implements OnInit {
     }
   }
 
-  secondaryColWidth() {
+  educationBodyColWidth(): string {
     if (this.isMobile) {
-      return 'col-12';
+      return 'col-11';
     } else {
-      return 'col-4';
+      return 'col-11';
     }
   }
 
-  dateTextAlign() {
+  dateTextAlign(): string {
     if (this.isMobile) {
       return 'text-left';
     } else {

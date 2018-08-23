@@ -24,7 +24,7 @@ export class CarouselComponent implements OnInit {
   ngOnInit() {
   }
 
-  shouldShowCarousel() {
+  shouldShowCarousel(): boolean {
     return (this.location.path() === '');
   }
 

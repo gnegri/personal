@@ -14,6 +14,7 @@ export class LeetcodeComponent implements OnInit {
   exercises: Array<LeetcodeProblem> = exercises;
   globals = globals;
   isMobile;
+  activeTitle;
 
   constructor() { }
 
@@ -21,23 +22,39 @@ export class LeetcodeComponent implements OnInit {
     this.isMobile = globals.isMobile();
   }
 
-  makeTitle(exercise: LeetcodeProblem) {
+  setActive(title: string): void {
+    this.activeTitle = title;
+  }
+
+  isActive(title: string): boolean {
+    return this.activeTitle === title;
+  }
+
+  makeTitle(exercise: LeetcodeProblem): string {
     return 'Exercise ' + exercise.exercise + ': ' + exercise.title;
   }
 
-  runtimeTooltip(percentile: number) {
+  runtimeTooltip(percentile: number): string {
     return 'This solution is faster than ' + percentile + '% of other submissions in this language.';
   }
 
-  problemInfoColWidth() {
+  progressBarColWidth(): string {
     if (this.isMobile) {
-      return 'col-9';
+      return 'col-11 ml-3';
     } else {
-      return 'col-3';
+      return 'col-8 ml-3';
     }
   }
 
-  colorType(percentile: number) {
+  problemInfoColWidth(): string {
+    if (this.isMobile) {
+      return 'col-11 text-center';
+    } else {
+      return 'col-3 text-right';
+    }
+  }
+
+  colorType(percentile: number): string {
     if (percentile >= 75) {
       return 'success';
     } else if (percentile >= 50) {

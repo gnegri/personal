@@ -38,12 +38,12 @@
 <!-- Body -->
 <div class='row '>
     <div class='col-11 '>
-        <p>I was involved in both software development and technical support for clients on the oncology module of Epic’s software suite.</p>
+        <p>I developed software and provided technical support for clients on the oncology module of Epic’s software suite.</p>
         <p>I designed, developed, and helped deploy development projects and bug fixes. I was manager and lead developer on a project to reduce wait times for treatment, which won a module-wide award and was highlighted in a major update.
         </p>
         <p>I worked with multiple health care systems, including Johns Hopkins Medicine and Ballad Health System. I assisted IT teams and leadership at these clients with project management, custom development, system performance, data analysis, and their
             reporting needs. At Ballad Health System, I helped implement software configuration for the 340B program, which has saved them tens of thousands per month on drug costs and
-            <mark (click)='isCollapsed=! isCollapsed ' [attr.aria-expanded]='!isCollapsed ' aria-controls='source1 '>was a contributing factor in changing two hospitals' revenue from a net loss to a net profit.</mark>
+            <mark (click)='isCollapsed=! isCollapsed ' [attr.aria-expanded]='!isCollapsed ' aria-controls='source1 '>was a contributing factor in changing two hospitals' revenues from net losses to net profits.</mark>
         </p>
     </div>
 </div>
@@ -91,11 +91,11 @@
 
         <!-- Intro Row -->
         <div class='row'>
-            <div [class]='primaryColWidth()'>
+            <div [class]='educationHeaderColWidth()'>
                 <h5><b>Washington University in St. Louis</b>, MO</h5>
             </div>
 
-            <div *ngIf='!isMobile' [class]='secondaryColWidth()'>
+            <div *ngIf='!isMobile'>
                 <h6 class='text-muted'>08.2011 - 05.2015</h6>
             </div>
         </div>
@@ -115,7 +115,7 @@
 
         <!-- Body -->
         <div class='row'>
-            <div class='col-10'>
+            <div class='col-11'>
                 <ul class='list-group list-group-flush'>
                     <li class='list-group-item'>Dean’s List, Fall 2014</li>
                     <li class='list-group-item'>Zeta Beta Tau, Philanthropy and Community Service Chair</li>
@@ -131,7 +131,7 @@
     <div [class]='secondaryColWidth()'>
         <h4 class='sectionHeader'>LANGUAGES <span style='font-size: 2rem;'>|</span> SKILLS</h4>
         <div class='row'>
-            <div class='col-12'>
+            <div class='col-11'>
                 <span class='fa fa-square checked checkYes'></span>
                 <span class='preCheckYes'>&nbsp;</span>
                 <span class='fa fa-square checked checkYes'></span>

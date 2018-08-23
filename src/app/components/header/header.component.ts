@@ -11,7 +11,6 @@ import { NavbarItemList } from '../../classes/NavbarItemList';
 export class HeaderComponent implements OnInit {
 
   type: NavbarItemList;
-  
   constructor() { }
 
   ngOnInit() {

@@ -1,9 +1,11 @@
 <nav class='navbar {{ type.position }} {{ type.size }} {{ type.color }}'>
     <!-- Icon -->
     <a *ngIf='type.img' class='navbar-brand' routerLink='' (click)='setActive(null)'>
-        <img [src]='type.img'></a>
+        <img [src]='type.img'>
+    </a>
+
     <!-- Navbar Items -->
-    <div class='collapse navbar-collapse' id='navbarSupportedContent'>
+    <div class='' [class.navbar-collapse]='!isMobile' [class.d-none]='isHidden' [class.text-center]='isMobile' id='navbarToggleExternalContent'>
         <ul class='navbar-nav mr-auto'>
 
             <!-- for each item in the NavbarItemList -->
@@ -17,20 +19,27 @@
                 </ng-template>
             </li>
             <!-- for each route defined in router 
-            <li *ngFor='let route of routes' class='nav-item'>
-                <div *ngIf='!routeIsHome(route.path)'>
-                    <div (click)='setActive(route.path)' [class.active]='isActive(route.path)'>
-                        <a class='nav-link' [routerLink]='route.path'>{{ route.path | titlecase }}</a>
-                    </div>
-                </div>
-            </li>
-            -->
+                    <li *ngFor='let route of routes' class='nav-item'>
+                        <div *ngIf='!routeIsHome(route.path)'>
+                            <div (click)='setActive(route.path)' [class.active]='isActive(route.path)'>
+                                <a class='nav-link' [routerLink]='route.path'>{{ route.path | titlecase }}</a>
+                            </div>
+                        </div>
+                    </li>
+                    -->
 
         </ul>
 
         <div class='justify-right'>
             <a href='https://github.com/gnegri/'><i class='fa fa-github icon'></i></a> &nbsp;
-            <a href='https://www.linkedin.com/in/grantnegri'><i class='fa fa-linkedin-square icon'></i></a>
+            <a href='https://www.linkedin.com/in/grantnegri'><i class='fa fa-linkedin-square icon' [class.pr-5]='!isMobile'></i></a>
         </div>
     </div>
+
+    <div *ngIf='isMobile'>
+        <button class='navbar-toggler' (click)='toggleHidden()' type='button' data-toggle='collapse' data-target='#navbarToggleExternalContent' aria-controls='navbarToggleExternalContent' aria-expanded='false' aria-label='Toggle navigation'>
+            <span class='navbar-toggler-icon'></span>
+        </button>
+    </div>
+
 </nav>
