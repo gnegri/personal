@@ -1,10 +1,133 @@
-The body of blog posts are stored in separate HTML files, staged elsewhere.
+<p class='lead'>
+    Goal: create a blog, serving posts from static files so we can lazily add them to the site via <code>*ngFor</code>.
+</p>
 
-<div class='row'>
-    <div class='col-6'>
-        This allows isolated formatting (with proper syntax highlighting when editing)
-    </div>
-    <div class='col-6'>
-        while allowing dynamically-pulled post bodies.
-    </div>
-</div>
+<p>
+    Create BlogPost class, define fields as you choose.
+    <pre>
+  src
+    &#xFE42; app
+        &#xFE42; classes
+            &#xFE42; BlogPost.ts
+</pre>
+    <pre class='language-typescript'><code>
+export class BlogPost {
+    date: string;
+    title: string;
+    body: any;
+}</code></pre>
+</p>
+
+<p>
+    Create a new BlogPosts data class; define as array of BlogPost.
+    <pre>
+   src
+    &#xFE42; app
+        &#xFE42; data
+            &#xFE42; blog
+                &#xFE42; BlogPosts.ts
+</pre>
+    <pre class='language-typescript'><code>
+import { BlogPost } from '../../classes/BlogPost';
+
+export const blogPostList: Array<BlogPost> = [
+];</code></pre>
+</p>
+
+
+<p>
+    Create a new BlogPost data class.
+    <pre>
+  src
+    &#xFE42; app
+        &#xFE42; data
+            &#xFE42; blog
+                &#xFE42; posts
+                    &#xFE42; blog20180823.ts
+</pre>
+    <pre class='language-typescript'><code>
+import { BlogPost } from '../../../classes/BlogPost';
+
+export const blog20180823: BlogPost = {
+    date: '2018.08.23',
+    title: 'Added a blog!',
+    body: 'placeholder'
+};</code></pre>
+</p>
+
+<p>
+    Now, at this point, we could just put the HTML for the blog post body in the 'body' field as a multiline string using ticks (<code>`</code>).
+    <br> So, let's make the Blogpost Component and display the date, title, and body.
+    <pre class='language-html'><code>
+&lt;div class='row'&gt;
+    &lt;div class='col-9'&gt;
+        &lt;h4&gt;
+            {{ post.title }}
+        &lt;/h4&gt;
+    &lt;/div&gt;
+
+    &lt;div class='col-3'&gt;
+        {{ post.date }}
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+    &lt;div class='col-11'&gt;
+        &lt;div [innerHTML]='post.body'&gt;
+            &lt;!-- Body of the blogpost --&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+</p>
+<p>However, we can't get syntax highlighting within an IDE for writing the blog post within a multiline string.
+    <br> How can we import the contents of a generic file? Luckily, TS2.0 introduced <a href='https://www.typescriptlang.org/docs/handbook/modules.html#wildcard-module-declarations'>wildcard module declarations</a>.
+    <br> So, create a typings.d.ts file.
+    <pre>
+  src
+    &#xFE42; app
+        &#xFE42; data
+            &#xFE42; blog
+                &#xFE42; posts
+                    &#xFE42; typings.d.ts
+</pre>
+    <pre class='language-typescript'><code>
+declare module '*.html' {
+    const content: string;
+    export default content;
+}</code></pre>
+</p>
+
+<p>
+    Now we can pull in generic HTML files via import into our BlogPost data classes. So, we can create a separate <code>.HTML</code> file.
+    <pre>
+  src
+    &#xFE42; app
+        &#xFE42; data
+            &#xFE42; blog
+                &#xFE42; posts
+                    &#xFE42; blog20180823.html
+</pre>
+</p>
+
+<p>
+    Withing the <code>blog*.ts</code> file, we modify it to pull this file into the body component. No modifications to any other file necessary!
+    <pre>
+  src
+    &#xFE42; app
+        &#xFE42; data
+            &#xFE42; blog
+                &#xFE42; posts
+                    &#xFE42; blog20180823.ts
+</pre>
+    <pre class='language-typescript'><code>
+    import { BlogPost } from '../../../classes/BlogPost';
+
+    import * as html from './blog20180823.html'; // ! new
+    
+    export const blog20180823: BlogPost = {
+        date: '2018.08.23',
+        title: 'Added a blog!',
+        body: html // ! changed
+    };</code></pre>
+</p>

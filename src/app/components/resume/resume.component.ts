@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { globals } from '../../data/Globals';
+import { GlobalsService } from '../../services/globals.service';
 
 @Component({
   selector: 'app-resume',
@@ -9,41 +10,57 @@ import { globals } from '../../data/Globals';
 })
 export class ResumeComponent implements OnInit {
   public isCollapsed = true;
-  globals = globals;
-  isMobile;
 
-  constructor() { }
+  _headerbodyPrimaryColWidth = 8;
+  _edulangPrimaryColWidth = 7;
+
+  constructor(public globalsService: GlobalsService) { }
 
   ngOnInit() {
-    this.isMobile = globals.isMobile();
   }
 
   sourceCardWidth(): string {
-    if (this.isMobile) {
+    if (this.globalsService.isMobile()) {
       return 'w-100';
     } else {
       return 'w-50';
     }
   }
 
-  primaryColWidth(): string {
-    if (this.isMobile) {
+  headerbodyPrimaryColWidth(): string {
+    if (this.globalsService.isMobile()) {
       return 'col-12';
     } else {
-      return 'col-7';
+      return 'col-' + this._headerbodyPrimaryColWidth;
     }
   }
 
-  secondaryColWidth(): string {
-    if (this.isMobile) {
+  headerbodySecondaryColWidth(): string {
+    if (this.globalsService.isMobile()) {
       return 'col-12';
     } else {
-      return 'col-5';
+      return 'col-' + (this.globalsService.totalCols() - this._headerbodyPrimaryColWidth);
+    }
+  }
+
+  edulangPrimaryColWidth(): string {
+    if (this.globalsService.isMobile()) {
+      return 'col-12';
+    } else {
+      return 'col-' + this._edulangPrimaryColWidth;
+    }
+  }
+
+  edulangSecondaryColWidth(): string {
+    if (this.globalsService.isMobile()) {
+      return 'col-12';
+    } else {
+      return 'col-' + (this.globalsService.totalCols() - this._edulangPrimaryColWidth);
     }
   }
 
   educationHeaderColWidth(): string {
-    if (this.isMobile) {
+    if (this.globalsService.isMobile()) {
       return 'col-12';
     } else {
       return 'col-8';
@@ -51,7 +68,7 @@ export class ResumeComponent implements OnInit {
   }
 
   educationBodyColWidth(): string {
-    if (this.isMobile) {
+    if (this.globalsService.isMobile()) {
       return 'col-11';
     } else {
       return 'col-11';
@@ -59,7 +76,7 @@ export class ResumeComponent implements OnInit {
   }
 
   dateTextAlign(): string {
-    if (this.isMobile) {
+    if (this.globalsService.isMobile()) {
       return 'text-left';
     } else {
       return 'text-center';

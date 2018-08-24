@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
 
 import { NavbarItemList } from '../../classes/NavbarItemList';
-import { globals } from '../../data/Globals';
+import { GlobalsService } from '../../services/globals.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,15 +15,12 @@ export class NavbarComponent implements OnInit {
   currentPage: string;
   location: Location;
   isHidden = true;
-  globals = globals;
-  isMobile;
 
-  constructor(location: Location) {
+  constructor(location: Location, public globalsService: GlobalsService) {
     this.location = location;
   }
 
   ngOnInit() {
-    this.isMobile = globals.isMobile();
   }
 
   toggleHidden() {
@@ -49,7 +46,7 @@ export class NavbarComponent implements OnInit {
   }
 
   dropdownOrNavItem() {
-    if (this.isMobile) {
+    if (this.globalsService.isMobile()) {
       return 'dropdown';
     } else {
       return 'nav-link';
@@ -57,10 +54,11 @@ export class NavbarComponent implements OnInit {
   }
 
   dropdownItemOrNavLink() {
-    if (this.isMobile) {
+    if (this.globalsService.isMobile()) {
       return 'dropdown-item';
     } else {
       return 'w-50';
     }
   }
+
 }

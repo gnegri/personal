@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { globals } from '../../data/Globals';
+import { GlobalsService } from '../../services/globals.service';
 
 @Component({
   selector: 'app-about',
@@ -11,17 +11,14 @@ export class AboutComponent implements OnInit {
   public generateIsCollapsed = true;
   public publishIsCollapsed = true;
 
-  globals = globals;
-  isMobile;
+  _generateDataSrc = '/assets/bash-scripts/generateproject.bash';
+  _publishDataSrc = '/assets/bash-scripts/publishproject.bash';
+  _primaryColWidth = 5;
 
-  generateDataSrc = '/assets/bash-scripts/generateproject.bash';
-  publishDataSrc = '/assets/bash-scripts/publishproject.bash';
-
-  constructor() {
+  constructor(public globalsService: GlobalsService) {
   }
 
   ngOnInit() {
-    this.isMobile = globals.isMobile();
   }
 
   toggleGenerate() {
@@ -30,6 +27,22 @@ export class AboutComponent implements OnInit {
 
   togglePublish() {
     this.publishIsCollapsed = !this.publishIsCollapsed;
+  }
+
+  primaryColWidth(): string {
+    if (this.globalsService.isMobile()) {
+      return 'col-12';
+    } else {
+      return 'col-' + this._primaryColWidth;
+    }
+  }
+
+  scondaryColWidth(): string {
+    if (this.globalsService.isMobile()) {
+      return 'col-12';
+    } else {
+      return 'col-' + (this.globalsService.totalCols() - this._primaryColWidth);
+    }
   }
 
 }

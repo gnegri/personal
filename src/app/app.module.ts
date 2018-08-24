@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { PrismModule } from '@ngx-prism/core';
 import { MarkdownModule } from 'ngx-markdown';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './/app-routing.module';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -17,8 +17,11 @@ import { HomeComponent } from './components/home/home.component';
 import { LeetcodeComponent } from './components/leetcode/leetcode.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CodeFromFileComponent } from './components/code-from-file/code-from-file.component';
+import { BlogComponent } from './components/blog/blog.component';
 import { BlogpostComponent } from './components/blogpost/blogpost.component';
 import { BlogtestpostComponent } from './components/blogtestpost/blogtestpost.component';
+
+import { GlobalsService } from './services/globals.service';
 
 @NgModule({
   declarations: [
@@ -33,8 +36,9 @@ import { BlogtestpostComponent } from './components/blogtestpost/blogtestpost.co
     LeetcodeComponent,
     CarouselComponent,
     CodeFromFileComponent,
+    BlogComponent,
     BlogpostComponent,
-    BlogtestpostComponent
+    BlogtestpostComponent,
   ],
   imports: [
     NgbModule.forRoot(),
@@ -43,7 +47,9 @@ import { BlogtestpostComponent } from './components/blogtestpost/blogtestpost.co
     AppRoutingModule,
     PrismModule
   ],
-  providers: [],
+  providers: [
+    GlobalsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

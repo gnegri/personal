@@ -5,7 +5,7 @@
     </a>
 
     <!-- Navbar Items -->
-    <div class='' [class.navbar-collapse]='!isMobile' [class.d-none]='isHidden' [class.text-center]='isMobile' id='navbarToggleExternalContent'>
+    <div [class.d-none]='isHidden' [class.navbar-collapse]='!globalsService.isMobile()' [class.text-center]='globalsService.isMobile()' id='navbarToggleExternalContent'>
         <ul class='navbar-nav mr-auto'>
 
             <!-- for each item in the NavbarItemList -->
@@ -30,13 +30,14 @@
 
         </ul>
 
-        <div class='justify-right'>
+        <div class='' [class.pr-5]='!globalsService.isMobile()'>
             <a href='https://github.com/gnegri/'><i class='fa fa-github icon'></i></a> &nbsp;
-            <a href='https://www.linkedin.com/in/grantnegri'><i class='fa fa-linkedin-square icon' [class.pr-5]='!isMobile'></i></a>
+            <a href='https://www.linkedin.com/in/grantnegri'><i class='fa fa-linkedin-square icon'></i></a> &nbsp;
+            <a href='mailto:grantnegri@gmail.com'><i class='fa fa-envelope icon' [class.pr-5]='!globalsService.isMobile()'></i></a>
         </div>
     </div>
 
-    <div *ngIf='isMobile'>
+    <div *ngIf='globalsService.isMobile()'>
         <button class='navbar-toggler' (click)='toggleHidden()' type='button' data-toggle='collapse' data-target='#navbarToggleExternalContent' aria-controls='navbarToggleExternalContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span class='navbar-toggler-icon'></span>
         </button>

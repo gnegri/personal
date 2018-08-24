@@ -16,10 +16,6 @@ export class CodeFromFileComponent implements OnInit, AfterViewInit  {
   }
 
   ngAfterViewInit() {
-    this.retriggerHighlight();
-  }
-
-  retriggerHighlight() {
     this.highlightService.retrigger();
   }
 }

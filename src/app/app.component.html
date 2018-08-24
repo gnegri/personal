@@ -1,12 +1,16 @@
-<!-- Header -->
-<app-header></app-header>
+<div (window:resize)='onResize($event)'>
 
-<!-- Carousel -->
-<app-carousel></app-carousel>
+    <!-- Header -->
+    <app-header></app-header>
 
-<!-- Body -->
-<app-body></app-body>
+    <!-- Carousel -->
+    <app-carousel></app-carousel>
 
-<!-- Footer 
-<app-footer id='footer'></app-footer>
--->
+    <!-- Body -->
+    <app-body></app-body>
+
+    <!-- Footer 
+    <app-footer id='footer'></app-footer>
+    -->
+
+</div>

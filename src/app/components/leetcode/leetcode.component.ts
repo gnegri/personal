@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 
 import { exercises } from '../../data/leetcode/LeetcodeExercises';
 import { LeetcodeProblem } from '../../classes/LeetcodeProblem';
-import { globals } from '../../data/Globals';
+import { GlobalsService } from '../../services/globals.service';
 
 @Component({
   selector: 'app-leetcode',
@@ -11,16 +11,12 @@ import { globals } from '../../data/Globals';
 })
 export class LeetcodeComponent implements OnInit {
   exercises: Array<LeetcodeProblem> = exercises;
-  globals = globals;
-  isMobile;
   activeTitle;
 
-  constructor() { }
+  constructor(public globalsService: GlobalsService) { }
 
   ngOnInit() {
-    this.isMobile = globals.isMobile();
   }
-
 
   setActive(title: string): void {
     this.activeTitle = title;
@@ -56,7 +52,7 @@ export class LeetcodeComponent implements OnInit {
   }
 
   progressBarColWidth(): string {
-    if (this.isMobile) {
+    if (this.globalsService.isMobile()) {
       return 'col-11 ml-3';
     } else {
       return 'col-sm-8 ml-3';
@@ -64,7 +60,7 @@ export class LeetcodeComponent implements OnInit {
   }
 
   problemInfoColWidth(): string {
-    if (this.isMobile) {
+    if (this.globalsService.isMobile()) {
       return 'col-12 text-center';
     } else {
       return 'col-sm-3 text-right';

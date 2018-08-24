@@ -1,15 +1,41 @@
 <!-- header -->
 <div class='row text-justify'>
-    <div [class]='primaryColWidth()'>
+    <div [class]='headerbodyPrimaryColWidth()'>
         <h1 class='display-4'>
             Grant Negri
         </h1>
-        <h5 class='text-muted ml-1'><small>
+        <p class='lead ml-1'>
             NYC-based software developer with experience in healthcare and bioinformatics
-        </small></h5>
+        </p>
     </div>
 
-    <div class='{{ secondaryColWidth() }} text-center'>
+    <!-- Misc -->
+    <div [class]='headerbodySecondaryColWidth()'>
+        <h4 class='sectionHeader'>LANGUAGES</h4>
+        <div class='row'>
+            <div class='col-11'>
+                <span class='fa fa-square checked checkYes'></span>
+                <span class='preCheckYes'>&nbsp;</span>
+                <span class='fa fa-square checked checkYes'></span>
+                <span class='preCheckYes'>&nbsp;</span>
+                <span class='fa fa-square checked checkYes'></span> Caché
+                <br>
+                <span class='fa fa-square checked checkYes'></span>
+                <span class='preCheckYes'>&nbsp;</span>
+                <span class='fa fa-square checked checkYes'></span>
+                <span class='preCheckNo'>&nbsp;</span>
+                <span class='fa fa-square checked checkNo'></span> JS | Java | Mathematica
+                <br>
+                <span class='fa fa-square checked checkYes'></span>
+                <span class='preCheckNo'>&nbsp;</span>
+                <span class='fa fa-square checked checkNo'></span>
+                <span class='preCheckNo'>&nbsp;</span>
+                <span class='fa fa-square checked checkNo'></span> Angular | MySQL
+            </div>
+        </div>
+    </div>
+    <!--
+    <div class='{{ headerbodySecondaryColWidth() }} text-center'>
         <br> <a href='https://github.com/gnegri/' class='btn btn-outline-primary '>GitHub</a> &nbsp;
         <a href='https://www.linkedin.com/in/grantnegri/' class='btn btn-outline-primary '>LinkedIn</a>
         <br>
@@ -17,6 +43,7 @@
             <b>grantnegri@gmail.com</b>
         </div>
     </div>
+    -->
 </div>
 <br>
 
@@ -26,13 +53,13 @@
 <!-- Epic -->
 <!-- Intro Row -->
 <div class='row '>
-    <div [class]='primaryColWidth()'>
+    <div [class]='headerbodyPrimaryColWidth()'>
         <h5><b>Epic Systems Corporation</b>, Madison, WI</h5>
         <h6>Technical Support Engineer, Oncology</h6>
     </div>
 
-    <div [class]='secondaryColWidth()'>
-        <!-- <h6 class='text-muted '>3 Yrs</h6>-->
+    <div [class]='headerbodySecondaryColWidth()'>
+        <!-- <h6 class='text-muted '>3 Yrs</h6> -->
         <h6 class='text-muted {{ dateTextAlign() }}'>06.2015 - 06.2018</h6>
     </div>
 </div>
@@ -41,10 +68,11 @@
 <div class='row '>
     <div class='col-11 '>
         <p>I developed software and provided technical support for clients on the oncology module of Epic’s software suite.</p>
-        <p>I designed, developed, and helped deploy development projects and bug fixes. I was manager and lead developer on a project to reduce wait times for treatment, which won a module-wide award and was highlighted in a major update.
-        </p>
+        <p>I designed, developed, and helped deploy development projects and bug fixes. I was manager and lead developer on a project to reduce wait times for chemotherapy, which won a module-wide award and was highlighted in a major update.</p>
+        <p>My other projects included </p>
         <p>I worked with multiple health care systems, including Johns Hopkins Medicine and Ballad Health System. I assisted IT teams and leadership at these clients with project management, custom development, system performance, data analysis, and their
-            reporting needs. At Ballad Health System, I helped implement software configuration for the 340B program, which has saved them tens of thousands per month on drug costs and
+            reporting needs.</p>
+        <p>At Ballad Health System, I helped implement software configuration for the 340B program, which has saved them tens of thousands per month on drug costs and
             <mark (click)='isCollapsed=! isCollapsed ' [attr.aria-expanded]='!isCollapsed ' aria-controls='source1 '>was a contributing factor in changing two hospitals' revenues from net losses to net profits.</mark>
         </p>
     </div>
@@ -67,13 +95,13 @@
 <!-- Brent Lab -->
 <!-- Intro Row -->
 <div class='row'>
-    <div [class]='primaryColWidth()'>
+    <div [class]='headerbodyPrimaryColWidth()'>
         <h5><b>Washington University School of Medicine</b>, St. Louis MO</h5>
         <h6>Research Assistant, Center for Genome Sciences and Systems Biology</h6>
     </div>
 
-    <div [class]='secondaryColWidth()'>
-        <!-- <h6 class='text-muted'>1.2 Yrs</h6>-->
+    <div [class]='headerbodySecondaryColWidth()'>
+        <!-- <h6 class='text-muted'>1.2 Yrs</h6> -->
         <h6 class='text-muted {{ dateTextAlign() }}'>02.2014 - 04.2015</h6>
     </div>
 </div>
@@ -84,20 +112,21 @@
         <p>I worked with Dr. Michael Brent and doctoral candidates on a project to link gene regulation to metabolism. I was responsible for both wet lab bench work and development to validate and analyze collected data using Mathematica.</p>
     </div>
 </div>
+<br>
 
 <!-- Education and Misc -->
 <!-- Education -->
 <div class='row'>
-    <div [class]='primaryColWidth()'>
+    <div [class]='edulangPrimaryColWidth()'>
         <h4 class='sectionHeader'>EDUCATION</h4>
 
-        <!-- Intro Row -->
+        <!-- WUSTL -->
         <div class='row'>
             <div [class]='educationHeaderColWidth()'>
                 <h5><b>Washington University in St. Louis</b>, MO</h5>
             </div>
 
-            <div *ngIf='!isMobile'>
+            <div *ngIf='!globalsService.isMobile()'>
                 <h6 class='text-muted'>08.2011 - 05.2015</h6>
             </div>
         </div>
@@ -109,7 +138,7 @@
 
         </div>
 
-        <div *ngIf='isMobile' class='row'>
+        <div *ngIf='globalsService.isMobile()' class='row'>
             <div class='col-12'>
                 <h6 class='text-muted'>08.2011 - 05.2015</h6>
             </div>
@@ -120,7 +149,6 @@
             <div class='col-11'>
                 <ul class='list-group list-group-flush'>
                     <li class='list-group-item'>Dean’s List, Fall 2014</li>
-                    <li class='list-group-item'>Zeta Beta Tau, Philanthropy and Community Service Chair</li>
                     <li class='list-group-item'>Relevant Coursework: <br>
                         <a href='http://bio5495.wustl.edu/' class='pl-5'>Algorithms for Computational Biology [Graduate-level]</a> <br>
                         <a href='https://classes.engineering.wustl.edu/cse330' class='pl-5'>Rapid Prototype Development &amp; Creative Programming</a>
@@ -128,31 +156,40 @@
                 </ul>
             </div>
         </div>
-    </div>
-    <!-- Misc -->
-    <div [class]='secondaryColWidth()'>
-        <h4 class='sectionHeader'>LANGUAGES <span style='font-size: 2rem;'>|</span> SKILLS</h4>
+
+        <br>
+
+        <!-- Pingry -->
+        <div class='row'>
+            <div [class]='educationHeaderColWidth()'>
+                <h5><b>The Pingry School</b>, Morristown NJ</h5>
+            </div>
+
+            <div *ngIf='!globalsService.isMobile()'>
+                <h6 class='text-muted'>09.2005 - 06.2011</h6>
+            </div>
+        </div>
+
+        <div *ngIf='globalsService.isMobile()' class='row'>
+            <div class='col-12'>
+                <h6 class='text-muted'>08.2011 - 05.2015</h6>
+            </div>
+        </div>
+
+        <!-- Body -->
         <div class='row'>
             <div class='col-11'>
-                <span class='fa fa-square checked checkYes'></span>
-                <span class='preCheckYes'>&nbsp;</span>
-                <span class='fa fa-square checked checkYes'></span>
-                <span class='preCheckYes'>&nbsp;</span>
-                <span class='fa fa-square checked checkYes'></span> Caché
-                <br>
-                <span class='fa fa-square checked checkYes'></span>
-                <span class='preCheckYes'>&nbsp;</span>
-                <span class='fa fa-square checked checkYes'></span>
-                <span class='preCheckNo'>&nbsp;</span>
-                <span class='fa fa-square checked checkNo'></span> JS | Java | Mathematica
-                <br>
-                <span class='fa fa-square checked checkYes'></span>
-                <span class='preCheckNo'>&nbsp;</span>
-                <span class='fa fa-square checked checkNo'></span>
-                <span class='preCheckNo'>&nbsp;</span>
-                <span class='fa fa-square checked checkNo'></span> Angular | MySQL
-                <br>
-                <br>
+                <ul class='list-group list-group-flush'>
+                    <li class='list-group-item'>Cum Laude Society, Science Award, AP Scholar with Distinction</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Misc -->
+    <div [class]='edulangSecondaryColWidth()'>
+        <h4 class='sectionHeader'>SKILLS</h4>
+        <div class='row'>
+            <div class='col-11'>
                 <ul class='list-group list-group-flush'>
                     <li class='list-group-item mt-1'>Software development life cycle</li>
                     <li class='list-group-item'>Project management, Jira</li>

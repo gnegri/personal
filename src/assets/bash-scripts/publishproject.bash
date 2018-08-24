@@ -1,33 +1,40 @@
 #!/bin/bash
 
-# called as ./publishproject.bash appname* [cname] [path]
+# put in your root dev folder
+# called as ./publishproject.bash appname* [cname] [-m "commit message for git"]
 # appname* doesn't support dashes
 # pass cname if your surge domain is somthing other than the app name
-# pass path if you aren't in your root dev folder
 appName=$1
 cname=$2
-path=$3
+commitFlag='false';
+commitMsg='';
 
-if [[ ${cname} == '' ]]
-	then
-		cname=${appName}
-fi
+while getopts ':m' git; do
+	case ${git} in
+		m)	commitFlag='true'
+			commitMsg='${OPTARG}';;
+		?) echo 'only -m is an allowed flag, used for git commit'
+	esac
+done
 
-# if path passed in
-if [[ ${path} != '' ]]
-	then
-		cd ${path}
-fi
-
-# enter project directory and build it
+# enter project directory
 cd ${appName}
-npm run build
 
-# enter built app folder, make 200.html file for URL routing
+# optionally commit to git (will not push)
+if [[ ${commitFlag} ]] then
+	echo 'commiting to git: ' + ${commitMsg}
+	git commit -m ${commitMsg} 
+fi
+
+# build, enter built app folder, make 200.html file for URL routing
+npm run build
 cd ./dist/${appName}
 cp ./index.html ./200.html
 
 # add CNAME file
+if [[ ${cname} == '' ]]	then
+	cname=${appName}
+fi
 echo ${cname}.surge.sh > CNAME
 
 # publish site
