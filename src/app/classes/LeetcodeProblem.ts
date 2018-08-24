@@ -5,5 +5,4 @@ export class LeetcodeProblem {
     solutionURL: string;
     runtime: number;
     percentile: number;
-    code: string;
 }

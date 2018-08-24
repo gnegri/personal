@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 
-import { exercises } from '../../data/extensable/LeetcodeExercises';
+import { exercises } from '../../data/leetcode/LeetcodeExercises';
 import { LeetcodeProblem } from '../../classes/LeetcodeProblem';
 import { globals } from '../../data/Globals';
 
@@ -59,7 +59,7 @@ export class LeetcodeComponent implements OnInit {
     if (this.isMobile) {
       return 'col-11 ml-3';
     } else {
-      return 'col-8 ml-3';
+      return 'col-sm-8 ml-3';
     }
   }
 
@@ -67,7 +67,7 @@ export class LeetcodeComponent implements OnInit {
     if (this.isMobile) {
       return 'col-12 text-center';
     } else {
-      return 'col-3 text-right';
+      return 'col-sm-3 text-right';
     }
   }
 

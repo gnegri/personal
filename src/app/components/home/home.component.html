@@ -1,3 +1,7 @@
 <h1 class='display-4'>
-    Welcome!
+    Changelog
 </h1>
+
+<div *ngFor='let post of blogPostList'>
+    <app-blogpost [post]='post'></app-blogpost>
+</div>

@@ -1,0 +1,19 @@
+<div class='row'>
+    <div class='col-9'>
+        <h4>
+            {{ post.title }}
+        </h4>
+    </div>
+
+    <div class='col-3'>
+        {{ post.date }}
+    </div>
+</div>
+
+<div class='row'>
+    <div class='col-11'>
+        <div [innerHTML]='post.body'>
+            <!-- Body of the blogpost -->
+        </div>
+    </div>
+</div>

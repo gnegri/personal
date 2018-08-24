@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { header } from '../../data/Header';
+import { header } from '../../data/navbar/Header';
 import { NavbarItemList } from '../../classes/NavbarItemList';
 
 @Component({

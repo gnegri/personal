@@ -1,5 +1,5 @@
-import { NavbarItemList } from '../classes/NavbarItemList';
-import { headerList } from './extensable/HeaderList';
+import { NavbarItemList } from '../../classes/NavbarItemList';
+import { headerList } from './HeaderList';
 
 export const header: NavbarItemList = {
     title: 'Home',

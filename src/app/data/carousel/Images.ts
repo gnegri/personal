@@ -1,4 +1,4 @@
-import { CarouselImage } from '../classes/CarouselImage';
+import { CarouselImage } from '../../classes/CarouselImage';
 
 export const carouselImages: Array<CarouselImage> = [{
     src: '/assets/agreement-business-clapping-990817.jpg',

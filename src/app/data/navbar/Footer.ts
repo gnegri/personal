@@ -1,5 +1,5 @@
-import { NavbarItemList } from '../classes/NavbarItemList';
-import { footerList } from './extensable/FooterList';
+import { NavbarItemList } from '../../classes/NavbarItemList';
+import { footerList } from './FooterList';
 
 export const footer: NavbarItemList = {
     title: 'About',

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { PrismModule } from '@ngx-prism/core';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -16,6 +17,8 @@ import { HomeComponent } from './components/home/home.component';
 import { LeetcodeComponent } from './components/leetcode/leetcode.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CodeFromFileComponent } from './components/code-from-file/code-from-file.component';
+import { BlogpostComponent } from './components/blogpost/blogpost.component';
+import { BlogtestpostComponent } from './components/blogtestpost/blogtestpost.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +32,13 @@ import { CodeFromFileComponent } from './components/code-from-file/code-from-fil
     HomeComponent,
     LeetcodeComponent,
     CarouselComponent,
-    CodeFromFileComponent
+    CodeFromFileComponent,
+    BlogpostComponent,
+    BlogtestpostComponent
   ],
   imports: [
     NgbModule.forRoot(),
+    MarkdownModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     PrismModule

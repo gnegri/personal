@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
 import { NavbarItem } from '../../classes/NavbarItem';
-import { headerList } from '../../data/extensable/HeaderList';
-import { carouselImages } from '../../data/Images';
+import { headerList } from '../../data/navbar/HeaderList';
+import { carouselImages } from '../../data/carousel/Images';
 
 @Component({
   selector: 'app-carousel',
