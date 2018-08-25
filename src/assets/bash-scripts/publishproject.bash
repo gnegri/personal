@@ -5,14 +5,17 @@
 # -a appname* doesn't support dashes
 # -c cname : if your surge domain is somthing other than the app name
 # -m : commit to git
-# -g : push to git (-m flag must be set
+# -g : push to git (-m flag must be set)
+# -o : start and open ng server
 # -t : testing; do not publish to surge
+
 appName=''
 cname=''
 commitFlag='false';
 commitMsg='';
 ngServeFlag='false';
 publishFlag='true';
+pushFlag='false';
 
 while getopts 'a:c:m:got' arg; do
 	case $arg in
@@ -54,12 +57,6 @@ if [[ $commitFlag == 'true' ]]
 		fi
 fi
 
-# open ng server to compare new updates
-if [[ $ngServeFlag == 'true' ]]
-	then
-		ng serve -o
-fi
-
 # publish site
 if [[ $publishFlag == 'true' ]]
 	then
@@ -77,4 +74,11 @@ if [[ $publishFlag == 'true' ]]
 
 		# push to surge.sh
 		surge --project ./
+fi
+
+# open ng server to compare new updates
+if [[ $ngServeFlag == 'true' ]]
+	then
+		cd ../..
+		ng serve -o
 fi
