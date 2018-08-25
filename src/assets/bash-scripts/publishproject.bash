@@ -1,9 +1,12 @@
 #!/bin/bash
 
 # put in your root dev folder
-# called as ./publishproject.bash -a appname* [cname] [-m "commit message for git"] [-o] [-t]
-# appname* doesn't support dashes
-# pass cname if your surge domain is somthing other than the app name
+# called as ./publishproject.bash -a appname* [-c cname] [-m "commit message for git"] [-g] [-o] [-t]
+# -a appname* doesn't support dashes
+# -c cname : if your surge domain is somthing other than the app name
+# -m : commit to git
+# -g : push to git (-m flag must be set
+# -t : testing; do not publish to surge
 appName=''
 cname=''
 commitFlag='false';
@@ -11,7 +14,7 @@ commitMsg='';
 ngServeFlag='false';
 publishFlag='true';
 
-while getopts 'a:c:m:ot' arg; do
+while getopts 'a:c:m:got' arg; do
 	case $arg in
 		a)	appName=$OPTARG
 			echo 'appName: '$appName;;
@@ -19,6 +22,7 @@ while getopts 'a:c:m:ot' arg; do
 			echo 'cname: '$cname;;
 		m)	commitFlag='true'
 			commitMsg=$OPTARG;;
+		g)	pushFlag='true';;
 		o)	ngServeFlag='true';;
 		t)	echo 'running in test mode; will not push to surge.sh'
 			publishFlag='false';;
@@ -43,6 +47,11 @@ if [[ $commitFlag == 'true' ]]
 		echo 'commiting to git: "'$commitMsg'"'
 		git add --all
 		git commit -m "$commitMsg"
+		if [[ $pushFlag == 'true' ]]
+			then
+				echo 'pushing to master'
+				git push -u origin master
+		fi
 fi
 
 # open ng server to compare new updates
