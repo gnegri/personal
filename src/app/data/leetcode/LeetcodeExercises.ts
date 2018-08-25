@@ -29,4 +29,18 @@ export const exercises: Array<LeetcodeProblem> = [{
     solutionURL: 'https://leetcode.com/submissions/detail/171109035/',
     runtime: 124,
     percentile: 61.55
+}, {
+    exercise: 5,
+    title: 'Longest Palindromic Substring',
+    problemURL: 'https://leetcode.com/problems/zigzag-conversion/description/',
+    solutionURL: 'https://leetcode.com/submissions/detail/171539070/',
+    runtime: 112,
+    percentile: 73.08
+}, {
+    exercise: 6,
+    title: 'ZigZag Conversion',
+    problemURL: 'https://leetcode.com/problems/median-of-two-sorted-arrays/description/',
+    solutionURL: 'https://leetcode.com/submissions/detail/171559793/',
+    runtime: 84,
+    percentile: 97.38
 }];

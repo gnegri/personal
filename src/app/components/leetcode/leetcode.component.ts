@@ -26,16 +26,7 @@ export class LeetcodeComponent implements OnInit {
     return this.activeTitle === title;
   }
 
-  lineNumbering(numLines: number): string {
-    let str = '';
-    for (let i = 1; i <= numLines; i++) {
-      str += '\n' + i;
-    }
-    return str;
-  }
-
   datasrc(exerciseNumber: number): string {
-    // this.highlightService.retrigger();
     return '/assets/leetcode/' + exerciseNumber + '.js';
   }
 
@@ -45,10 +36,6 @@ export class LeetcodeComponent implements OnInit {
 
   runtimeTooltip(percentile: number): string {
     return 'This solution is faster than ' + percentile + '% of other submissions in this language.';
-  }
-
-  numLines(string: string): number {
-    return string.split('\n').length - 1;
   }
 
   progressBarColWidth(): string {

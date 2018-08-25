@@ -6,6 +6,12 @@
 appName=$1
 path=$2
 
+# need an app name
+if [[ $appName == '' ]]
+	then
+		exit 2;
+fi
+
 # make app
 if [[ ${path} != '' ]]
 	then

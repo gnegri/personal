@@ -12,13 +12,13 @@ ngServeFlag='false';
 publishFlag='true';
 
 while getopts 'a:c:m:ot' arg; do
-	case ${arg} in
-		a)	appName=${OPTARG}
-			echo 'appName: '${appName};;
-		c)	cname=${OPTARG}
-			echo 'cname: '${cname};;
+	case $arg in
+		a)	appName=$OPTARG
+			echo 'appName: '$appName;;
+		c)	cname=$OPTARG
+			echo 'cname: '$cname;;
 		m)	commitFlag='true'
-			commitMsg=${OPTARG};;
+			commitMsg=$OPTARG;;
 		o)	ngServeFlag='true';;
 		t)	echo 'running in test mode; will not push to surge.sh'
 			publishFlag='false';;
@@ -27,44 +27,44 @@ while getopts 'a:c:m:ot' arg; do
 	esac
 done
 
-if [[ ${appName} == '' ]]
+if [[ $appName == '' ]]
 	then
 		echo 'must pass -a flag'
 		exit 2
 fi
 
 # enter project directory
-cd ${appName}
+cd $appName
 
 
 # optionally commit to git (will not push)
-if [[ ${commitFlag} == 'true' ]]
+if [[ $commitFlag == 'true' ]]
 	then
-		echo 'commiting to git: '${commitMsg}
+		echo 'commiting to git: "'$commitMsg'"'
 		git add --all
-		git commit -m "${commitMsg}"
+		git commit -m "$commitMsg"
 fi
 
 # open ng server to compare new updates
-if [[ ${ngServeFlag} == 'true' ]]
+if [[ $ngServeFlag == 'true' ]]
 	then
 		ng serve -o
 fi
 
 # publish site
-if [[ ${publishFlag} == 'true' ]]
+if [[ $publishFlag == 'true' ]]
 	then
 		# build, enter built app folder, make 200.html file for URL routing
 		npm run build
-		cd ./dist/${appName}
+		cd ./dist/$appName
 		cp ./index.html ./200.html
 
 		# add CNAME file
-		if [[ ${cname} == '' ]]
+		if [[ $cname == '' ]]
 			then
-				cname=${appName}
+				cname=$appName
 		fi
-		echo ${cname}.surge.sh > CNAME
+		echo $cname.surge.sh > CNAME
 
 		# push to surge.sh
 		surge --project ./
