@@ -3,7 +3,7 @@
 </p>
 
 <p>
-    Create BlogPost class, define fields as you choose.
+    Create <code>BlogPost</code> class, define fields as you choose.
     <pre>
   src
     &#xFE42; app
@@ -19,7 +19,7 @@ export class BlogPost {
 </p>
 
 <p>
-    Create a new BlogPosts data class; define as array of BlogPost.
+    Create a new <code>BlogPosts</code> data class; define as array of <code>BlogPost</code>.
     <pre>
    src
     &#xFE42; app
@@ -36,7 +36,7 @@ export const blogPostList: Array<BlogPost> = [
 
 
 <p>
-    Create a new BlogPost data class.
+    Create a new <code>BlogPost</code> data class.
     <pre>
   src
     &#xFE42; app
@@ -56,8 +56,34 @@ export const blog20180823: BlogPost = {
 </p>
 
 <p>
+    In the <code>BlogPosts</code> data class, import the <code>BlogPost</code> you just made and add it to the array.
+    <pre>
+  src
+    &#xFE42; app
+        &#xFE42; data
+            &#xFE42; blog
+                &#xFE42; BlogPosts.ts
+    </pre>
+    <pre class='language-typescript'><code>
+import { BlogPost } from '../../classes/BlogPost';
+
+import { blog20180823 } from './posts/blog20180823'; // ! new
+
+export const blogPostList: Array<BlogPost> = [
+    blog20180823, // ! new
+];</code></pre>
+</p>
+
+<p>
     Now, at this point, we could just put the HTML for the blog post body in the 'body' field as a multiline string using ticks (<code>`</code>).
-    <br> So, let's make the Blogpost Component and display the date, title, and body.
+    <br> So, let's make the <code>BlogPost</code> Component and display the date, title, and body.
+    <pre>
+  src
+    &#xFE42; app
+        &#xFE42; components
+            &#xFE42; blogpost
+                &#xFE42; blogpost.component.html
+    </pre>
     <pre class='language-html'><code>
 &lt;div class='row'&gt;
     &lt;div class='col-9'&gt;
@@ -78,11 +104,51 @@ export const blog20180823: BlogPost = {
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-
 </p>
+
+<p>
+    Now we have a way to deliver a single blog post. Now for the <code>*ngFor</code> loop. Create a <code>Blog</code> component, displaying a list of <code>BlogPost</code>s; we'll pass the post itself as a parameter to the <code>BlogPost</code> component.
+    <pre>
+  src
+    &#xFE42; app
+        &#xFE42; components
+            &#xFE42; blog
+                &#xFE42; blog.component.ts
+    </pre>
+
+    <pre class='language-typescript'><code>
+import { BlogPost } from '../../classes/BlogPost';
+import { blogPostList } from '../../data/blog/BlogPosts';
+// Component
+blogPostList: Array<BlogPost> = blogPostList;
+</code></pre>
+    <pre>
+  src
+    &#xFE42; app
+        &#xFE42; components
+            &#xFE42; blog
+                &#xFE42; blog.component.html
+    </pre>
+    <pre class='language-html'><code>
+&lt;div *ngFor=&#039;let post of blogPostList&#039;&gt;
+    &nbsp;&nbsp; &nbsp;&lt;app-blogpost [post]=&#039;post&#039;&gt;&lt;/app-blogpost&gt;
+&lt;/div&gt;</code></pre>
+    <pre>
+  src
+    &#xFE42; app
+        &#xFE42; components
+            &#xFE42; blogpost
+                &#xFE42; blogpost.component.ts
+    </pre>
+    <pre class='language-typescript'><code>
+import { BlogPost } from '../../classes/BlogPost';
+// Component
+@Input() post: BlogPost;</code></pre>
+</p>
+
 <p>However, we can't get syntax highlighting within an IDE for writing the blog post within a multiline string.
     <br> How can we import the contents of a generic file? Luckily, TS2.0 introduced <a href='https://www.typescriptlang.org/docs/handbook/modules.html#wildcard-module-declarations'>wildcard module declarations</a>.
-    <br> So, create a typings.d.ts file.
+    <br> So, create a <code>typings.d.ts</code> file.
     <pre>
   src
     &#xFE42; app
@@ -99,7 +165,7 @@ declare module '*.html' {
 </p>
 
 <p>
-    Now we can pull in generic HTML files via import into our BlogPost data classes. So, we can create a separate <code>.HTML</code> file.
+    Now we can pull in generic HTML files via import into our <code>BlogPost</code> data classes. So, we can create a separate <code>.html</code> file.
     <pre>
   src
     &#xFE42; app
@@ -108,6 +174,7 @@ declare module '*.html' {
                 &#xFE42; posts
                     &#xFE42; blog20180823.html
 </pre>
+    <app-code-from-file [datasrc]='blog20180823.html'></app-code-from-file>
 </p>
 
 <p>

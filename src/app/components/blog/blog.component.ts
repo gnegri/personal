@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { BlogPost } from '../../classes/BlogPost';
 import { blogPostList } from '../../data/blog/BlogPosts';
 
 @Component({
@@ -9,7 +10,7 @@ import { blogPostList } from '../../data/blog/BlogPosts';
 })
 export class BlogComponent implements OnInit {
 
-  blogPostList = blogPostList;
+  blogPostList: Array<BlogPost> = blogPostList;
 
   constructor() { }
 
