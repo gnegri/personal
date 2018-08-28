@@ -19,14 +19,13 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit() {
-    
   }
 
-  toggleGenerate() {
+  toggleGenerate(): void {
     this.generateIsCollapsed = !this.generateIsCollapsed;
   }
 
-  togglePublish() {
+  togglePublish(): void {
     this.publishIsCollapsed = !this.publishIsCollapsed;
   }
 

@@ -11,7 +11,7 @@ import { GlobalsService } from '../../services/globals.service';
 })
 export class LeetcodeComponent implements OnInit {
   exercises: Array<LeetcodeProblem> = exercises;
-  activeTitle;
+  activeTitle: string;
 
   constructor(public globalsService: GlobalsService) { }
 
@@ -27,7 +27,7 @@ export class LeetcodeComponent implements OnInit {
   }
 
   datasrc(exerciseNumber: number): string {
-    return '/assets/leetcode/' + exerciseNumber + '.js';
+    return '/assets/leetcode/exercise' + exerciseNumber + '.js';
   }
 
   makeTitle(exercise: LeetcodeProblem): string {

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
+import { CarouselImage } from '../../classes/CarouselImage';
+import { carouselImages } from '../../data/carousel/Images';
 import { NavbarItem } from '../../classes/NavbarItem';
 import { headerList } from '../../data/navbar/HeaderList';
-import { carouselImages } from '../../data/carousel/Images';
 
 @Component({
   selector: 'app-carousel',
@@ -12,9 +13,8 @@ import { carouselImages } from '../../data/carousel/Images';
 })
 export class CarouselComponent implements OnInit {
 
-  carouselImages = carouselImages;
+  carouselImages: Array<CarouselImage> = carouselImages;
   headerList: Array<NavbarItem> = headerList;
-
 
   location: Location;
   constructor(location: Location) {

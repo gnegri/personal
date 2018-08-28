@@ -1,25 +1,35 @@
 import { Injectable } from '@angular/core';
 
-import { globals } from '../data/Globals';
+// import { globals } from '../data/Globals';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalsService {
-  constructor() { }
-  globals;
-  _isMobile: boolean = globals.isMobile();
+  constructor() {
+  }
+  _isMobile: boolean = /Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent);
+  _totalCols = 12;
+  // globals;
 
-  onResize() {
-    this._isMobile = globals.isMobile();
+  _getWidth(): number {
+    return Math.max(
+        document.body.scrollWidth,
+        document.documentElement.scrollWidth,
+        document.body.offsetWidth,
+        document.documentElement.offsetWidth,
+        document.documentElement.clientWidth
+    );
   }
 
-  isMobile() {
-    return this._isMobile;
+  isMobile(): boolean {
+    // this._isMobile = this._isMobile;
+    return this._isMobile || this._getWidth() <= 1000;
   }
 
-  totalCols() {
-    return globals.totalCols;
+  totalCols(): number {
+    // return globals.totalCols;
+    return this._totalCols;
   }
 
 }

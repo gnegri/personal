@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 
-import { globals } from './data/Globals';
+// import { globals } from './data/Globals';
 import { GlobalsService } from './services/globals.service';
 
 
@@ -9,19 +9,22 @@ import { GlobalsService } from './services/globals.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  title = 'app';
-  globals = globals;
-  isMobile: boolean = globals.isMobile();
-
+export class AppComponent implements OnInit, AfterViewInit {
+  // globals = globals;
   constructor(private globalsService: GlobalsService) {
   }
+  // isMobile: boolean = this.globalsService.isMobile();
 
   ngOnInit() {
     this.onResize();
   }
 
+  ngAfterViewInit() {
+    this.onResize();
+  }
+
   onResize() {
-    this.globalsService._isMobile = globals.isMobile();
+    // this.isMobile = this.globalsService.isMobile();
+    this.globalsService.isMobile();
   }
 }

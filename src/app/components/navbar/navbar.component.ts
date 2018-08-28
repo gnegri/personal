@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  toggleHidden() {
+  toggleHidden(): void {
     this.isHidden = !this.isHidden;
   }
 
@@ -45,7 +45,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  dropdownOrNavItem() {
+  dropdownOrNavItem(): string {
     if (this.globalsService.isMobile()) {
       return 'dropdown';
     } else {
@@ -53,7 +53,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  dropdownItemOrNavLink() {
+  dropdownItemOrNavLink(): string {
     if (this.globalsService.isMobile()) {
       return 'dropdown-item';
     } else {
