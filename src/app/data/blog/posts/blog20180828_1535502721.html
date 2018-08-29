@@ -1,0 +1,90 @@
+<p class='lead'>
+    Part 1: Syntax Highlighting
+</p>
+
+<p>
+    To achieve the nice syntax highlighting, I chose to use <a href='https://prismjs.com/'>Prism</a>. First, install it:
+    <pre class='language-bash'><code>$ npm install prismjs</code></pre> Pick your favorite theme (I chose Okaidia); add it to <code>angular.json</code> under styles. Line numbering also requires a line in here, so add it too, if desired. We also need
+    to include the <code>prism.js</code> script, so let's do that all at once.
+
+    <pre class='language-json'><code>
+        {
+            // ...
+            "projects": {
+                "personal": // your app name
+                    // ...
+                    "architect": {
+                        "build": {
+                            // ..
+                            "options": {
+                                // ...
+                                "styles": [
+                                    // ...
+                                    "node_modules/prismjs/themes/prism-okaidia.css",
+                                    "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css"
+                                ],
+                                // ...
+                                "scripts": [
+                                    "node_modules/prismjs/prism.js"
+                                ]
+                            },
+                            // ...
+    </code></pre>
+</p>
+
+<p>We're going to use a service to expose and inject Prism functions.
+    <pre class='language-bas'><code>$ ng generate service ./services/highlight/highlight</code></pre> In the service, import the extra <a href='https://prismjs.com/#languages-list'>languages</a> you'll need and any <a href='https://prismjs.com/#plugins'>plugins</a>    you want.
+</p>
+<p>
+    <pre class='language-typescript'><code>
+import { Injectable } from '@angular/core';
+
+import Prism from 'prismjs';
+import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-json';
+import 'prismjs/components/prism-typescript';
+import 'prismjs/plugins/file-highlight/prism-file-highlight';
+import 'prismjs/plugins/line-numbers/prism-line-numbers';
+import 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace';
+import 'prismjs/plugins/previewers/prism-previewers';
+
+@Injectable({
+    providedIn: 'root',
+})
+export class HighlightService {
+
+    constructor() { }
+
+    highlightAll() {
+        Prism.highlightAll();
+    }
+
+    fileHighlight() {
+        Prism.fileHighlight();
+    }
+}
+    </code></pre>
+</p>
+
+<p>I chose to expose <code>highlightAll()</code> and <code>fileHighlight()</code>, but you may find that you have different needs. In each component that will have code to add syntax highlighting to, import the service and declare it in the constructor.
+    I included this in two components:
+    <a href='https://github.com/gnegri/personal/tree/master/src/app/components/code-from-file'><code>CodeFromFileComponent</code></a> and
+    <a href='https://github.com/gnegri/personal/tree/master/src/app/components/blogpost'><code>BlogpostComponent</code></a>. In each, the Prism functions are called on <code>ngAfterViewInit</code>. In
+    <a href='https://github.com/gnegri/personal/tree/master/src/app/components/blogpost'><code>BlogpostComponent</code></a>, this will highlight all applicable <code>&lt;pre&gt;</code> tags.
+
+    <pre class='language-typescript'><code>
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+
+import { HighlightService } from '../../services/hilghlight/highlight.service';
+// ...
+export class BlogpostComponent implements OnInit, AfterViewInit {
+    // ...
+    constructor(private highlightService: HighlightService) { }
+    // ...
+    ngAfterViewInit() {
+        this.highlightService.highlightAll();
+    }
+    // ...
+}
+</code></pre>
+</p>

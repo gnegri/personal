@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BlogPost } from '../../classes/BlogPost';
-import { testPost } from '../../data/blog/testPost';
+import { template } from '../../data/blog/posts/template';
 
 @Component({
   selector: 'app-blogtestpost',
@@ -10,10 +10,10 @@ import { testPost } from '../../data/blog/testPost';
 })
 export class BlogtestpostComponent implements OnInit {
 
-  testPost: BlogPost = testPost;
-  title: string = testPost.title;
-  date: string = testPost.date;
-  body: string = testPost.body;
+  template: BlogPost = template;
+  title: string = template.title;
+  date: string = template.date;
+  body: string = template.body;
 
   constructor() { }
 

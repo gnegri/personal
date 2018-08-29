@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 
-import { HighlightService } from '../../services/highlight.service';
+import { HighlightService } from '../../services/hilghlight/highlight.service';
 
 @Component({
   selector: 'app-code-from-file',
@@ -16,6 +16,6 @@ export class CodeFromFileComponent implements OnInit, AfterViewInit  {
   }
 
   ngAfterViewInit() {
-    this.highlightService.retrigger();
+    this.highlightService.fileHighlight();
   }
 }

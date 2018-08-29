@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 // import { globals } from './data/Globals';
-import { GlobalsService } from './services/globals.service';
+import { GlobalsService } from './services/globals/globals.service';
 
 
 @Component({

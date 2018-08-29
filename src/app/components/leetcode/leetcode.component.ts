@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 
 import { exercises } from '../../data/leetcode/LeetcodeExercises';
 import { LeetcodeProblem } from '../../classes/LeetcodeProblem';
-import { GlobalsService } from '../../services/globals.service';
+import { GlobalsService } from '../../services/globals/globals.service';
 
 @Component({
   selector: 'app-leetcode',

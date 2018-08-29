@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
 
 import { NavbarItemList } from '../../classes/NavbarItemList';
-import { GlobalsService } from '../../services/globals.service';
+import { GlobalsService } from '../../services/globals/globals.service';
 
 @Component({
   selector: 'app-navbar',

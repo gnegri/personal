@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { PrismModule } from '@ngx-prism/core';
-import { MarkdownModule } from 'ngx-markdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -21,7 +19,8 @@ import { BlogComponent } from './components/blog/blog.component';
 import { BlogpostComponent } from './components/blogpost/blogpost.component';
 import { BlogtestpostComponent } from './components/blogtestpost/blogtestpost.component';
 
-import { GlobalsService } from './services/globals.service';
+import { GlobalsService } from './services/globals/globals.service';
+import { HighlightService } from './services/hilghlight/highlight.service';
 
 @NgModule({
   declarations: [
@@ -42,13 +41,12 @@ import { GlobalsService } from './services/globals.service';
   ],
   imports: [
     NgbModule.forRoot(),
-    MarkdownModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
-    PrismModule
   ],
   providers: [
-    GlobalsService
+    GlobalsService,
+    HighlightService,
   ],
   bootstrap: [AppComponent]
 })

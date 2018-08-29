@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 
 import { BlogPost } from '../../classes/BlogPost';
-import { HighlightService } from '../../services/highlight.service';
+import { HighlightService } from '../../services/hilghlight/highlight.service';
 
 @Component({
   selector: 'app-blogpost',
@@ -14,7 +14,6 @@ export class BlogpostComponent implements OnInit, AfterViewInit {
   constructor(private highlightService: HighlightService) { }
 
   ngOnInit() {
-    this.highlightService.highlightAll();
   }
 
   ngAfterViewInit() {

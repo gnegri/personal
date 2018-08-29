@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { GlobalsService } from '../../services/globals.service';
+import { GlobalsService } from '../../services/globals/globals.service';
 
 @Component({
   selector: 'app-about',
@@ -8,8 +8,8 @@ import { GlobalsService } from '../../services/globals.service';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-  public generateIsCollapsed = true;
-  public publishIsCollapsed = true;
+  generateIsCollapsed = true;
+  publishIsCollapsed = true;
 
   _generateDataSrc = '/assets/bash-scripts/generateproject.bash';
   _publishDataSrc = '/assets/bash-scripts/publishproject.bash';

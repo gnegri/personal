@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { globals } from '../../data/Globals';
-import { GlobalsService } from '../../services/globals.service';
+import { GlobalsService } from '../../services/globals/globals.service';
 
 @Component({
   selector: 'app-resume',
@@ -9,7 +8,7 @@ import { GlobalsService } from '../../services/globals.service';
   styleUrls: ['./resume.component.scss']
 })
 export class ResumeComponent implements OnInit {
-  public isCollapsed = true;
+  isCollapsed = true;
 
   _headerbodyPrimaryColWidth = 8;
   _edulangPrimaryColWidth = 7;
