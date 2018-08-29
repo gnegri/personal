@@ -1,6 +1,21 @@
-<h1 class='display-4'>
-    Changelog
-</h1>
+<div class='row'>
+    <div class='col-9'>
+
+        <h1 class='display-4'>
+            Most recent blog post:
+        </h1>
+    </div>
+
+    <div class='col-3 mt-auto mb-auto'>
+        <span routerLink='blog' class='btn btn-lg btn-outline-primary '>
+            See all
+        </span>
+    </div>
+
+</div>
 
 <br>
-<app-blog></app-blog>
+<app-blogpost [post]='mostRecentPost'></app-blogpost>
+<br>
+<br><br>
+<!-- <app-blog></app-blog> -->
