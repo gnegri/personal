@@ -8,6 +8,7 @@ import { exercise5 } from './exercises/exercise5';
 import { exercise6 } from './exercises/exercise6';
 import { exercise7 } from './exercises/exercise7';
 import { exercise9 } from './exercises/exercise9';
+import { exercise12 } from './exercises/exercise12';
 import { exercise19 } from './exercises/exercise19';
 
 export const exercises: Array<LeetcodeProblem> = [
@@ -19,5 +20,6 @@ export const exercises: Array<LeetcodeProblem> = [
     exercise6,
     exercise7,
     exercise9,
+    exercise12,
     exercise19,
 ];

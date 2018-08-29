@@ -61,7 +61,7 @@ fi
 if [[ $publishFlag == 'true' ]]
 	then
 		# build, enter built app folder, make 200.html file for URL routing
-		npm run build
+		npm run build --prod
 		cd ./dist/$appName
 		cp ./index.html ./200.html
 
