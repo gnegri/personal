@@ -13,11 +13,10 @@ export class NavbarComponent implements OnInit {
 
   @Input() type: NavbarItemList;
   currentPage: string;
-  location: Location;
   isHidden = true;
 
-  constructor(location: Location, public globalsService: GlobalsService) {
-    this.location = location;
+  constructor(private location: Location,
+    public globalsService: GlobalsService) {
   }
 
   ngOnInit() {
@@ -38,7 +37,7 @@ export class NavbarComponent implements OnInit {
   isActive(page: string): boolean {
     if (this.currentPage === page)  {
       return true;
-    } else if (this.location.path() === page) {
+    } else if (this.location.path().includes(page)) {
      return true;
     } else {
       return false;

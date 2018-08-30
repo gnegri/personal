@@ -21,6 +21,7 @@ export class ResumeComponent implements OnInit {
   toggleCollapse(): void {
     this.isCollapsed = !this.isCollapsed;
   }
+
   sourceCardWidth(): string {
     if (this.globalsService.isMobile()) {
       return 'w-100';

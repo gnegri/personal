@@ -8,6 +8,7 @@
 # -g : push to git (-m flag must be set)
 # -o : start and open ng server
 # -t : testing; do not publish to surge
+# ex: ./publishproject.bash -a personal -c gnegri -m "committing" -go
 
 appName=''
 cname=''

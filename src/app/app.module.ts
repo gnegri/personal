@@ -21,6 +21,7 @@ import { BlogtestpostComponent } from './components/blogtestpost/blogtestpost.co
 
 import { GlobalsService } from './services/globals/globals.service';
 import { HighlightService } from './services/hilghlight/highlight.service';
+import { SingleblogpostComponent } from './components/singleblogpost/singleblogpost.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { HighlightService } from './services/hilghlight/highlight.service';
     BlogComponent,
     BlogpostComponent,
     BlogtestpostComponent,
+    SingleblogpostComponent,
   ],
   imports: [
     NgbModule.forRoot(),

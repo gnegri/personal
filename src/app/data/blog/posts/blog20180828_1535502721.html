@@ -68,9 +68,10 @@ export class HighlightService {
 
 <p>I chose to expose <code>highlightAll()</code> and <code>fileHighlight()</code>, but you may find that you have different needs. In each component that will have code to add syntax highlighting to, import the service and declare it in the constructor.
     I included this in two components:
-    <a href='https://github.com/gnegri/personal/tree/master/src/app/components/code-from-file'><code>CodeFromFileComponent</code></a> and
-    <a href='https://github.com/gnegri/personal/tree/master/src/app/components/blogpost'><code>BlogpostComponent</code></a>. In each, the Prism functions are called on <code>ngAfterViewInit</code>. In
-    <a href='https://github.com/gnegri/personal/tree/master/src/app/components/blogpost'><code>BlogpostComponent</code></a>, this will highlight all applicable <code>&lt;pre&gt;</code> tags.
+    <a href='https://github.com/gnegri/personal/tree/master/src/app/components/blogpost'><code>BlogpostComponent</code></a> and
+    <a href='https://github.com/gnegri/personal/tree/master/src/app/components/code-from-file'><code>CodeFromFileComponent</code></a>. In each, the Prism functions are called on <code>ngAfterViewInit</code>. In
+    <a href='https://github.com/gnegri/personal/tree/master/src/app/components/blogpost'><code>BlogpostComponent</code></a>, this will highlight all applicable <code>&lt;pre&gt;</code> tags; in
+    <a href='https://github.com/gnegri/personal/tree/master/src/app/components/code-from-file'><code>CodeFromFileComponent</code></a>, <code>fileHighlight()</code> is used to retrigger highlighting a file fetched with Prism's File Highlight plugin.
 
     <pre class='language-typescript'><code>
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';

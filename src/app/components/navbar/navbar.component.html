@@ -18,15 +18,6 @@
                     <a class='nav-link' [href]='item.url' routerLinkActive='active-link'>{{ item.title }}</a>
                 </ng-template>
             </li>
-            <!-- for each route defined in router 
-                    <li *ngFor='let route of routes' class='nav-item'>
-                        <div *ngIf='!routeIsHome(route.path)'>
-                            <div (click)='setActive(route.path)' [class.active]='isActive(route.path)'>
-                                <a class='nav-link' [routerLink]='route.path'>{{ route.path | titlecase }}</a>
-                            </div>
-                        </div>
-                    </li>
-                    -->
 
         </ul>
 

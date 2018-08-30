@@ -1,7 +1,10 @@
 <div class='row'>
     <div class='col-9'>
         <h4>
-            {{ post.title }}
+            <a *ngIf='!noLink; else plainText' [routerLink]='makeURL(post.title)'>{{ post.title }}</a>
+            <ng-template #plainText>
+                {{ post.title }}
+            </ng-template>
         </h4>
     </div>
 
