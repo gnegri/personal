@@ -17,7 +17,6 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { CodeFromFileComponent } from './components/code-from-file/code-from-file.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { BlogpostComponent } from './components/blogpost/blogpost.component';
-import { BlogtestpostComponent } from './components/blogtestpost/blogtestpost.component';
 
 import { GlobalsService } from './services/globals/globals.service';
 import { HighlightService } from './services/hilghlight/highlight.service';
@@ -38,7 +37,6 @@ import { SingleblogpostComponent } from './components/singleblogpost/singleblogp
     CodeFromFileComponent,
     BlogComponent,
     BlogpostComponent,
-    BlogtestpostComponent,
     SingleblogpostComponent,
   ],
   imports: [
