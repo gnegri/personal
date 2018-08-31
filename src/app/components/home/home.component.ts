@@ -13,8 +13,9 @@ export class HomeComponent implements OnInit {
 
     mostRecentPost: BlogPost;
 
-    constructor(private blogService: BlogService) {
-        this.mostRecentPost = this.blogService.getBlogPostList()[0];
+    constructor(
+        private blogService: BlogService) {
+            this.mostRecentPost = this.blogService.getBlogPostList()[0];
     }
 
     ngOnInit() {

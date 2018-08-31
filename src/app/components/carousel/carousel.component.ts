@@ -16,8 +16,8 @@ export class CarouselComponent implements OnInit {
     carouselImages: Array<CarouselImage> = carouselImages;
     headerList: Array<NavbarItem> = headerList;
 
-    location: Location;
-    constructor(location: Location) {
+    constructor(
+        private location: Location) {
         this.location = location;
     }
 

@@ -15,7 +15,8 @@ export class NavbarComponent implements OnInit {
     currentPage: string;
     isHidden = true;
 
-    constructor(private location: Location,
+    constructor(
+        private location: Location,
         public globalsService: GlobalsService) {
     }
 

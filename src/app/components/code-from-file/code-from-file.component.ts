@@ -10,7 +10,8 @@ import { HighlightService } from '../../services/hilghlight/highlight.service';
 export class CodeFromFileComponent implements OnInit, AfterViewInit  {
     @Input() datasrc;
 
-    constructor(private highlightService: HighlightService) { }
+    constructor(
+        private highlightService: HighlightService) { }
 
     ngOnInit() {
     }

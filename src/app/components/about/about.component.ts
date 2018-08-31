@@ -15,7 +15,8 @@ export class AboutComponent implements OnInit {
     _publishDataSrc = '/assets/bash-scripts/publishproject.bash';
     _primaryColWidth = 5;
 
-    constructor(public globalsService: GlobalsService) {
+    constructor(
+        public globalsService: GlobalsService) {
     }
 
     ngOnInit() {
@@ -31,17 +32,17 @@ export class AboutComponent implements OnInit {
 
     primaryColWidth(): string {
         if (this.globalsService.isMobile()) {
-        return 'col-12';
+            return 'col-12';
         } else {
-        return 'col-' + this._primaryColWidth;
+            return 'col-' + this._primaryColWidth;
         }
     }
 
     scondaryColWidth(): string {
         if (this.globalsService.isMobile()) {
-        return 'col-12';
+            return 'col-12';
         } else {
-        return 'col-' + (this.globalsService.totalCols() - this._primaryColWidth);
+            return 'col-' + (this.globalsService.totalCols() - this._primaryColWidth);
         }
     }
 

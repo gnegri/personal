@@ -13,7 +13,8 @@ export class LeetcodeComponent implements OnInit {
     exercises: Array<LeetcodeProblem> = exercises;
     activeTitle: string;
 
-    constructor(public globalsService: GlobalsService) { }
+    constructor(
+        public globalsService: GlobalsService) { }
 
     ngOnInit() {
     }
@@ -40,17 +41,17 @@ export class LeetcodeComponent implements OnInit {
 
     progressBarColWidth(): string {
         if (this.globalsService.isMobile()) {
-        return 'col-11 ml-3';
+            return 'col-11 ml-3';
         } else {
-        return 'col-sm-8 ml-3';
+            return 'col-sm-8 ml-3';
         }
     }
 
     problemInfoColWidth(): string {
         if (this.globalsService.isMobile()) {
-        return 'col-12 text-center';
+            return 'col-12 text-center';
         } else {
-        return 'col-sm-3 text-right';
+            return 'col-sm-3 text-right';
         }
     }
 

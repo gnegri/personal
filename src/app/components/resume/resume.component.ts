@@ -13,7 +13,8 @@ export class ResumeComponent implements OnInit {
     _headerbodyPrimaryColWidth = 8;
     _edulangPrimaryColWidth = 7;
 
-    constructor(public globalsService: GlobalsService) { }
+    constructor(
+        public globalsService: GlobalsService) { }
 
     ngOnInit() {
     }

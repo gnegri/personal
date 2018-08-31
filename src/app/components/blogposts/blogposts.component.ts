@@ -12,8 +12,9 @@ import { BlogPost } from '../../classes/BlogPost';
 export class BlogpostsComponent implements OnInit {
 
     blogPostList: Array<BlogPost>;
-    constructor(private blogService: BlogService) {
-        this.blogPostList = this.blogService.getBlogPostList();
+    constructor(
+        private blogService: BlogService) {
+            this.blogPostList = this.blogService.getBlogPostList();
     }
 
     ngOnInit() {
