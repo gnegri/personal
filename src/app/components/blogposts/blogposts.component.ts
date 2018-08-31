@@ -5,18 +5,18 @@ import { BlogService } from '../../services/blog/blog.service';
 import { BlogPost } from '../../classes/BlogPost';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-blogposts',
+  templateUrl: './blogposts.component.html',
+  styleUrls: ['./blogposts.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class BlogpostsComponent implements OnInit {
 
-    mostRecentPost: BlogPost;
-
+    blogPostList: Array<BlogPost>;
     constructor(private blogService: BlogService) {
-        this.mostRecentPost = this.blogService.getBlogPostList()[0];
+        this.blogPostList = this.blogService.getBlogPostList();
     }
 
     ngOnInit() {
     }
+
 }

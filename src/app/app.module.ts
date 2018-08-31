@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { GlobalsService } from './services/globals/globals.service';
+import { HighlightService } from './services/hilghlight/highlight.service';
+import { BlogService } from './services/blog/blog.service';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HeaderComponent } from './components/header/header.component';
@@ -17,10 +21,9 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { CodeFromFileComponent } from './components/code-from-file/code-from-file.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { BlogpostComponent } from './components/blogpost/blogpost.component';
-
-import { GlobalsService } from './services/globals/globals.service';
-import { HighlightService } from './services/hilghlight/highlight.service';
 import { SingleblogpostComponent } from './components/singleblogpost/singleblogpost.component';
+import { BlogpostsComponent } from './components/blogposts/blogposts.component';
+import { BlogsidebarComponent } from './components/blogsidebar/blogsidebar.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,8 @@ import { SingleblogpostComponent } from './components/singleblogpost/singleblogp
     BlogComponent,
     BlogpostComponent,
     SingleblogpostComponent,
+    BlogpostsComponent,
+    BlogsidebarComponent,
   ],
   imports: [
     NgbModule.forRoot(),
@@ -47,6 +52,7 @@ import { SingleblogpostComponent } from './components/singleblogpost/singleblogp
   providers: [
     GlobalsService,
     HighlightService,
+    BlogService,
   ],
   bootstrap: [AppComponent]
 })

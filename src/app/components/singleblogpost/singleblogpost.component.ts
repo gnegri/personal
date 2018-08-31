@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { unSanitizePostTitle } from '../blog/blog.component';
+import { BlogService } from '../../services/blog/blog.service';
 
 import { BlogPost } from '../../classes/BlogPost';
-import { blogPostList } from '../../data/blog/BlogPosts';
 
 @Component({
   selector: 'app-singleblogpost',
@@ -13,17 +12,23 @@ import { blogPostList } from '../../data/blog/BlogPosts';
 })
 export class SingleblogpostComponent implements OnInit {
 
-  title = '';
-  post: BlogPost;
-  constructor(private route: ActivatedRoute) {
-    // turn the url back into the title
-    this.route.params.subscribe( params => this.title = unSanitizePostTitle(params.title) );
+    title = '';
+    post: BlogPost;
+    constructor(
+        private route: ActivatedRoute,
+        private blogService: BlogService) {
+            // turn the url back into the title
+            this.route.params.subscribe(params =>
+                this.title = this.blogService.decodePostURL(params.title)
+            );
 
-    // get the proper blog post by title
-    this.post = blogPostList.find( post => post.title === this.title );
-  }
+            // get the proper blog post by title
+            this.post = this.blogService.getBlogPostList().find(post =>
+                post.title === this.title
+            );
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

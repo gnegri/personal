@@ -1,21 +1,9 @@
 <div class='row'>
-    <div [class]='sidebarColWidth()'>
-        <nav class='navbar-light bg-light' [class.navbar]='!globalsService.isMobile()'>
-            <nav *ngFor='let post of blogPostList' class='nav nav-pills flex-sm-column'>
-                <a class='nav-link' [routerLink]='makeURL(post.title)'>
-                    {{ post.date }}
-                    <br *ngIf='!globalsService.isMobile()'>
-                    {{ post.title }}
-                </a>
-            </nav>
-        </nav>
+    <div [class]='blogColWidth()'>
+        <app-blogposts></app-blogposts>
     </div>
 
-
-    <div [class]='blogColWidth()'>
-        <div *ngFor='let post of blogPostList'>
-            <br>
-            <app-blogpost [post]='post'></app-blogpost>
-        </div>
+    <div [class]='sidebarColWidth()'>
+        <app-blogsidebar></app-blogsidebar>
     </div>
 </div>

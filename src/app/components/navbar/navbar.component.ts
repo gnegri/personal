@@ -11,53 +11,53 @@ import { GlobalsService } from '../../services/globals/globals.service';
 })
 export class NavbarComponent implements OnInit {
 
-  @Input() type: NavbarItemList;
-  currentPage: string;
-  isHidden = true;
+    @Input() type: NavbarItemList;
+    currentPage: string;
+    isHidden = true;
 
-  constructor(private location: Location,
-    public globalsService: GlobalsService) {
-  }
-
-  ngOnInit() {
-  }
-
-  toggleHidden(): void {
-    this.isHidden = !this.isHidden;
-  }
-
-  setActive(page: string): void {
-    this.currentPage = page;
-  }
-
-  routeIsHome(route: string): boolean {
-    return (route === '' || route === '#');
-  }
-
-  isActive(page: string): boolean {
-    if (this.currentPage === page)  {
-      return true;
-    } else if (this.location.path().includes(page)) {
-     return true;
-    } else {
-      return false;
+    constructor(private location: Location,
+        public globalsService: GlobalsService) {
     }
-  }
 
-  dropdownOrNavItem(): string {
-    if (this.globalsService.isMobile()) {
-      return 'dropdown';
-    } else {
-      return 'nav-link';
+    ngOnInit() {
     }
-  }
 
-  dropdownItemOrNavLink(): string {
-    if (this.globalsService.isMobile()) {
-      return 'dropdown-item';
-    } else {
-      return 'w-50';
+    toggleHidden(): void {
+        this.isHidden = !this.isHidden;
     }
-  }
+
+    setActive(page: string): void {
+        this.currentPage = page;
+    }
+
+    routeIsHome(route: string): boolean {
+        return (route === '' || route === '#');
+    }
+
+    isActive(page: string): boolean {
+        if (this.currentPage === page)  {
+            return true;
+        } else if (this.location.path().includes(page)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    dropdownOrNavItem(): string {
+        if (this.globalsService.isMobile()) {
+            return 'dropdown';
+        } else {
+            return 'nav-link';
+        }
+    }
+
+    dropdownItemOrNavLink(): string {
+        if (this.globalsService.isMobile()) {
+            return 'dropdown-item';
+        } else {
+            return 'w-50';
+        }
+    }
 
 }

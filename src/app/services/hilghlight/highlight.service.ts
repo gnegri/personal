@@ -14,13 +14,13 @@ import 'prismjs/plugins/previewers/prism-previewers';
 })
 export class HighlightService {
 
-  constructor() { }
+    constructor() { }
 
-  highlightAll() {
-    Prism.highlightAll();
-  }
+    highlightAll() {
+        Prism.highlightAll();
+    }
 
-  fileHighlight() {
-    Prism.fileHighlight();
-  }
+    fileHighlight() {
+        Prism.fileHighlight();
+    }
 }

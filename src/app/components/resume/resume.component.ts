@@ -8,83 +8,83 @@ import { GlobalsService } from '../../services/globals/globals.service';
   styleUrls: ['./resume.component.scss']
 })
 export class ResumeComponent implements OnInit {
-  isCollapsed = true;
+    isCollapsed = true;
 
-  _headerbodyPrimaryColWidth = 8;
-  _edulangPrimaryColWidth = 7;
+    _headerbodyPrimaryColWidth = 8;
+    _edulangPrimaryColWidth = 7;
 
-  constructor(public globalsService: GlobalsService) { }
+    constructor(public globalsService: GlobalsService) { }
 
-  ngOnInit() {
-  }
-
-  toggleCollapse(): void {
-    this.isCollapsed = !this.isCollapsed;
-  }
-
-  sourceCardWidth(): string {
-    if (this.globalsService.isMobile()) {
-      return 'w-100';
-    } else {
-      return 'w-50';
+    ngOnInit() {
     }
-  }
 
-  headerbodyPrimaryColWidth(): string {
-    if (this.globalsService.isMobile()) {
-      return 'col-12';
-    } else {
-      return 'col-' + this._headerbodyPrimaryColWidth;
+    toggleCollapse(): void {
+        this.isCollapsed = !this.isCollapsed;
     }
-  }
 
-  headerbodySecondaryColWidth(): string {
-    if (this.globalsService.isMobile()) {
-      return 'col-12';
-    } else {
-      return 'col-' + (this.globalsService.totalCols() - this._headerbodyPrimaryColWidth);
+    sourceCardWidth(): string {
+        if (this.globalsService.isMobile()) {
+            return 'w-100';
+        } else {
+            return 'w-50';
+        }
     }
-  }
 
-  edulangPrimaryColWidth(): string {
-    if (this.globalsService.isMobile()) {
-      return 'col-12';
-    } else {
-      return 'col-' + this._edulangPrimaryColWidth;
+    headerbodyPrimaryColWidth(): string {
+        if (this.globalsService.isMobile()) {
+            return 'col-12';
+        } else {
+            return 'col-' + this._headerbodyPrimaryColWidth;
+        }
     }
-  }
 
-  edulangSecondaryColWidth(): string {
-    if (this.globalsService.isMobile()) {
-      return 'col-12';
-    } else {
-      return 'col-' + (this.globalsService.totalCols() - this._edulangPrimaryColWidth);
+    headerbodySecondaryColWidth(): string {
+        if (this.globalsService.isMobile()) {
+            return 'col-12';
+        } else {
+            return 'col-' + (this.globalsService.totalCols() - this._headerbodyPrimaryColWidth);
+        }
     }
-  }
 
-  educationHeaderColWidth(): string {
-    if (this.globalsService.isMobile()) {
-      return 'col-12';
-    } else {
-      return 'col-8';
+    edulangPrimaryColWidth(): string {
+        if (this.globalsService.isMobile()) {
+            return 'col-12';
+        } else {
+            return 'col-' + this._edulangPrimaryColWidth;
+        }
     }
-  }
 
-  educationBodyColWidth(): string {
-    if (this.globalsService.isMobile()) {
-      return 'col-11';
-    } else {
-      return 'col-11';
+    edulangSecondaryColWidth(): string {
+        if (this.globalsService.isMobile()) {
+            return 'col-12';
+        } else {
+            return 'col-' + (this.globalsService.totalCols() - this._edulangPrimaryColWidth);
+        }
     }
-  }
 
-  dateTextAlign(): string {
-    if (this.globalsService.isMobile()) {
-      return 'text-left';
-    } else {
-      return 'text-center';
+    educationHeaderColWidth(): string {
+        if (this.globalsService.isMobile()) {
+            return 'col-12';
+        } else {
+            return 'col-8';
+        }
     }
-  }
+
+    educationBodyColWidth(): string {
+        if (this.globalsService.isMobile()) {
+            return 'col-11';
+        } else {
+            return 'col-11';
+        }
+    }
+
+    dateTextAlign(): string {
+        if (this.globalsService.isMobile()) {
+            return 'text-left';
+        } else {
+            return 'text-center';
+        }
+    }
 
 
 }

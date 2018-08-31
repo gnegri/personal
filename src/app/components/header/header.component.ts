@@ -10,12 +10,12 @@ import { NavbarItemList } from '../../classes/NavbarItemList';
 })
 export class HeaderComponent implements OnInit {
 
-  type: NavbarItemList;
+    type: NavbarItemList;
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-    this.type = header;
-  }
+    ngOnInit() {
+        this.type = header;
+    }
 
 }

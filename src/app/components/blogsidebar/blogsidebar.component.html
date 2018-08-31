@@ -1,0 +1,9 @@
+<nav class='navbar-light bg-light' [class.navbar]='!globalsService.isMobile()'>
+    <nav *ngFor='let post of blogPostList' class='nav nav-pills flex-sm-column'>
+        <a class='nav-link' [routerLink]='blogService.makePostURL(post.title)'>
+            {{ post.date }}
+            <br *ngIf='!globalsService.isMobile()'>
+            {{ post.title }}
+        </a>
+    </nav>
+</nav>

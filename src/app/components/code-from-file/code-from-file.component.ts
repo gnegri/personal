@@ -8,14 +8,14 @@ import { HighlightService } from '../../services/hilghlight/highlight.service';
   styleUrls: ['./code-from-file.component.scss']
 })
 export class CodeFromFileComponent implements OnInit, AfterViewInit  {
-  @Input() datasrc;
+    @Input() datasrc;
 
-  constructor(private highlightService: HighlightService) { }
+    constructor(private highlightService: HighlightService) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  ngAfterViewInit() {
-    this.highlightService.fileHighlight();
-  }
+    ngAfterViewInit() {
+        this.highlightService.fileHighlight();
+    }
 }

@@ -13,19 +13,19 @@ import { headerList } from '../../data/navbar/HeaderList';
 })
 export class CarouselComponent implements OnInit {
 
-  carouselImages: Array<CarouselImage> = carouselImages;
-  headerList: Array<NavbarItem> = headerList;
+    carouselImages: Array<CarouselImage> = carouselImages;
+    headerList: Array<NavbarItem> = headerList;
 
-  location: Location;
-  constructor(location: Location) {
-    this.location = location;
-  }
+    location: Location;
+    constructor(location: Location) {
+        this.location = location;
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  shouldShowCarousel(): boolean {
-    return (this.location.path() === '');
-  }
+    shouldShowCarousel(): boolean {
+        return (this.location.path() === '');
+    }
 
 }

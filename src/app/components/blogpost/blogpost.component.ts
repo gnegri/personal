@@ -1,11 +1,10 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { Location } from '@angular/common';
 
-import { BlogPost } from '../../classes/BlogPost';
-
-import { sanitizePostTitle } from '../blog/blog.component';
-
 import { HighlightService } from '../../services/hilghlight/highlight.service';
+import { BlogService } from '../../services/blog/blog.service';
+
+import { BlogPost } from '../../classes/BlogPost';
 
 @Component({
   selector: 'app-blogpost',
@@ -14,28 +13,29 @@ import { HighlightService } from '../../services/hilghlight/highlight.service';
 })
 export class BlogpostComponent implements OnInit, AfterViewInit {
 
-  @Input() post: BlogPost;
-  @Input() noLink: boolean;
+    @Input() post: BlogPost;
+    @Input() noLink: boolean;
 
-  constructor(
-    private location: Location,
-    private highlightService: HighlightService) {
-  }
-
-  ngOnInit() {
-  }
-
-  ngAfterViewInit() {
-    this.highlightService.highlightAll();
-  }
-
-  makeURL(title: string): string {
-    let prefix = '';
-    if (this.location.path() !== '/blog') {
-      prefix = 'blog/';
+    constructor(
+        private location: Location,
+        private highlightService: HighlightService,
+        private blogService: BlogService) {
     }
-    // replace spaces with dashes
-    return prefix + sanitizePostTitle(title);
-  }
+
+    ngOnInit() {
+    }
+
+    ngAfterViewInit() {
+        this.highlightService.highlightAll();
+    }
+
+    makeURL(title: string): string {
+        let prefix = '';
+        if (this.location.path() !== '/blog') {
+            prefix = 'blog/';
+        }
+        // replace spaces with dashes
+        return prefix + this.blogService.makePostURL(title);
+    }
 
 }
