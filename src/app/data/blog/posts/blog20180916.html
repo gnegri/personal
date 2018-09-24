@@ -1,0 +1,123 @@
+<p>
+    I'm not sure if this is the best way to do this, but here's what I tried.
+</p>
+
+<p>
+    When I first approached this, I started to copy and paste code, then did weird imports across components, and finally decided it would be cleanest and most maintainable to create a service to inject the code.
+</p>
+
+<p>
+    So, create a service with <code>ng g s ./services/blog/blog</code> and register it in <code>app.module</code>:
+    <pre class='language-typescript'><code>
+        import { BlogService } from './services/blog/blog.service';
+        // ...
+        providers: [
+          // ...
+          BlogService,
+        ],
+    </code></pre>
+</p>
+
+<p>
+    Now, when we create a URL from the title, it would make sense for it to be readable - <code>hello-world </code> is a lot easier to read than <code>hello%20world</code>, so we want to translate all spaces in the title to dashes - easy enough. However,
+    in case there are dashes in the title itself, we should first translate those to underscores first. We'll inject the encode/decode, along with the Blogpostlist (since we were already importing that in a bunch of places).
+    <pre class='language-typescript'><code>
+        import { Injectable } from '@angular/core';
+
+        import { BlogPost } from '../../classes/BlogPost';
+        
+        import { blogPostList } from '../../data/blog/BlogPosts';
+        
+        @Injectable({
+          providedIn: 'root'
+        })
+        export class BlogService {
+        
+            blogPostList: Array<BlogPost> = blogPostList;
+        
+            constructor() { }
+        
+            getBlogPostList(): Array<BlogPost> {
+                return this.blogPostList;
+            }
+        
+            makePostURL(title: string): string {
+                return title.replace(/-/g, '_').replace(/[\s]/g, '-');
+            }
+        
+            decodePostURL(url: string): string {
+                return url.replace(/-/g, ' ').replace(/_/g, '-');
+            }
+        
+        }
+        
+    </code></pre>
+</p>
+
+<p>
+    Now we can make nicely formatted URLs, so let's make the titles hyperlinks. In <code>blogpost.component</code>, we import the service and make a wrapper so the links work from /blog or the home page.
+
+    <pre class='language-typescript'><code>
+        import { Location } from '@angular/common';
+
+        // ...
+        import { BlogService } from '../../services/blog/blog.service';
+
+        // ...
+        constructor(
+            private location: Location,
+            private highlightService: HighlightService,
+            private blogService: BlogService) {
+        }
+        //
+        
+        makeURL(title: string): string {
+            let prefix = '';
+            if (this.location.path() !== '/blog') {
+                prefix = 'blog/';
+            }
+            // replace spaces with dashes
+            return prefix + this.blogService.makePostURL(title);
+        }
+    </code></pre> makeURL is then used as the input to <code>[routerLink]</code>:
+    <pre class='language-html'><code>
+        <a [routerLink]='makeURL(post.title)'>{{ post.title }}</a>
+    </code></pre> Now, when the URL is clicked, we are taken to <code>/blog/title-of-post</code>.
+</p>
+
+<p>
+    The difficult part was figuring out which post to display based on the URL alone. I'm not sure if this was the best way to do things, but the decode function is used as such in <code>singleblogpost.component</code>; first, we decode the URL to the
+    title, then use <code>.find</code> to find the correct post to display.
+
+    <pre class='language-typescript'><code>
+        import { Component, OnInit } from '@angular/core';
+        import { ActivatedRoute } from '@angular/router';
+
+        import { BlogService } from '../../services/blog/blog.service';
+        
+        import { BlogPost } from '../../classes/BlogPost';
+        // ...
+        export class SingleblogpostComponent implements OnInit {
+
+            title = '';
+            post: BlogPost;
+            constructor(
+                private route: ActivatedRoute,
+                private blogService: BlogService) {
+                    // turn the url back into the title
+                    this.route.params.subscribe(params =>
+                        this.title = this.blogService.decodePostURL(params.title)
+                    );
+        
+                    // get the proper blog post by title
+                    this.post = this.blogService.getBlogPostList().find(post =>
+                        post.title === this.title
+                    );
+            }
+        
+            // ...
+        
+        }
+        
+    </code></pre> I'd love to know a better/the "correct" way to do this!
+</p>

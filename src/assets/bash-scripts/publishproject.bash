@@ -75,11 +75,11 @@ if [[ $publishFlag == 'true' ]]
 
 		# push to surge.sh
 		surge --project ./
-fi
-
-# open ng server to compare new updates
-if [[ $ngServeFlag == 'true' ]]
-	then
-		cd ../..
-		ng serve -o
+        
+        # open ng server to compare new updates
+        if [[ $ngServeFlag == 'true' ]]
+            then
+                cd ../..
+                ng serve -o
+        fi
 fi
