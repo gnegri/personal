@@ -1,9 +1,9 @@
 // constructor for a node
 function Node(value) {
-	this.value = value;
-	this.left = null;
-	this.right = null;
-	// theoretically could implement parent node
+    this.value = value;
+    this.left = null;
+    this.right = null;
+    // theoretically could implement parent node
 };
 
 // constructor for the tree
@@ -27,7 +27,7 @@ BST.prototype.getNode = function(node) {
 
 // O(n) walk through tree in sorted order
 BST.prototype.inOrderWalk = function(node) {
-	node = this.getNode();
+    node = this.getNode();
     this.inOrderWalkHelp(node);
 };
 BST.prototype.inOrderWalkHelp = function(node) {
@@ -41,7 +41,7 @@ BST.prototype.inOrderWalkHelp = function(node) {
 // O(n) Pre order walk. root, then subsequent left subtrees 
 // 'pick up by root'
 BST.prototype.preOrderWalk = function(node) {
-	node = this.getNode();
+    node = this.getNode();
     this.preOrderWalkHelp(node);
 };
 BST.prototype.preOrderWalkHelp = function(node) {
@@ -56,7 +56,7 @@ BST.prototype.preOrderWalkHelp = function(node) {
 // 'pull from left'
 BST.prototype.postOrderWalk = function(node) {
     node = this.getNode(node);
-	this.postOrderWalkHelp(node);
+    this.postOrderWalkHelp(node);
 };                            
 BST.prototype.postOrderWalkHelp = function(node) {
     if (node) {
@@ -84,15 +84,15 @@ BST.prototype.find = function(value, node) {
     if (value === node.value) return [node];
     
     // walk left if value < value, right otherwise until found
-	let parent = null;
+    let parent = null;
     while (value !== node.value && node) {
-		if (value < node.value) {
-			parent = node;
-			node = node.left;
-		} else {
-			parent = node;
-			node = node.right;
-		}
+        if (value < node.value) {
+            parent = node;
+            node = node.left;
+        } else {
+            parent = node;
+            node = node.right;
+        }
     }
     
     // if null, value is not in tree.
@@ -113,10 +113,10 @@ BST.prototype.findRecursive = function(value, node) {
     if (value === node.value) return node;
     
     if (value < node.value) {
-		return findRecursive(value, node.left);
+        return findRecursive(value, node.left);
     } else {
-		return findRecursive(value, node.right);
-	}
+        return findRecursive(value, node.right);
+    }
 };
 
 // O(h). ideal case, h = log(n)
@@ -129,7 +129,7 @@ BST.prototype.getMin = function(node) {
         parent = node;
         node = node.left;
     }
-	
+    
     // if parent is null we know we are at root
     return [node, parent];
 };
@@ -168,7 +168,7 @@ BST.prototype.insert = function(value) {
                 // if cannot move left, insert new node
                 node.left = new Node(value);
                 return;
-			}
+            }
         // otherwise, move right and insert if cannot
         } else {
             if (node.right) {
@@ -200,8 +200,8 @@ BST.prototype.remove = function([node, parent]) {
     } else {
         // get min in right subtree
         let [min, minParent] = this.getMin(node.right);
-		// case where node.right is the min
-		if (!minParent && min !== null) minParent = node;
+        // case where node.right is the min
+        if (!minParent && min !== null) minParent = node;
         if (minParent !== node) {
             this.swap(min, min.right, minParent);
             min.right = node.right;
@@ -223,8 +223,8 @@ BST.prototype.removeValue = function(value) {
 
 // O(1) swap out node 
 BST.prototype.swap = function(node, swap, parent) {
-	if (!parent) {
-		this.root = swap;
+    if (!parent) {
+        this.root = swap;
     } else if (parent.left === node) {
         parent.left = swap;
     } else {
@@ -234,21 +234,21 @@ BST.prototype.swap = function(node, swap, parent) {
 
 // Iterate over the tree in sorted order
 BST.prototype.inOrderIterator = function*(node) {
-	if (!node) return;
-	yield* this.inOrderIterator(node.left);
-	yield node;
-	yield* this.inOrderIterator(node.right);
+    if (!node) return;
+    yield* this.inOrderIterator(node.left);
+    yield node;
+    yield* this.inOrderIterator(node.right);
 };
 
 // O(n) check if tree is indeed BST by walking in order rather than checking each node's properties
 BST.prototype.isBST = function() {
-	const itr = this.inOrderIterator(this.root);
-	let lastNode = new Node(Number.NEGATIVE_INFINITY);
-	let node = itr.next();
-	while (!node.done && node.value) {
-		if (node.value.value < lastNode.value) return false;
-		lastNode = node.value;
-		node = itr.next();
-	}
-	return true;
+    const itr = this.inOrderIterator(this.root);
+    let lastNode = new Node(Number.NEGATIVE_INFINITY);
+    let node = itr.next();
+    while (!node.done && node.value) {
+        if (node.value.value < lastNode.value) return false;
+        lastNode = node.value;
+        node = itr.next();
+    }
+    return true;
 };

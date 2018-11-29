@@ -8,14 +8,14 @@ path=$2
 
 # need an app name
 if [[ $appName == '' ]]
-	then
-		exit 2;
+    then
+        exit 2;
 fi
 
 # make app
 if [[ $path != '' ]]
-	then
-		cd $path
+    then
+        cd $path
 fi
 ng new $appName --style=scss
 
