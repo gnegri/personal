@@ -24,6 +24,7 @@ import { BlogpostComponent } from './components/blogpost/blogpost.component';
 import { SingleblogpostComponent } from './components/singleblogpost/singleblogpost.component';
 import { BlogpostsComponent } from './components/blogposts/blogposts.component';
 import { BlogsidebarComponent } from './components/blogsidebar/blogsidebar.component';
+import { AlgoImplementationsComponent } from './components/algo-implementations/algo-implementations.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { BlogsidebarComponent } from './components/blogsidebar/blogsidebar.compo
     SingleblogpostComponent,
     BlogpostsComponent,
     BlogsidebarComponent,
+    AlgoImplementationsComponent,
   ],
   imports: [
     NgbModule.forRoot(),
