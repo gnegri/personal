@@ -43,6 +43,9 @@ LLNode.prototype.find = function(value) {
         return;
     }
     let curNode = this;
+    // check head
+    if (curNode.value === value) return [curNode, null];
+    
     while (curNode.next) {
         if (curNode.next.value === value) {
             return [curNode.next, curNode];
