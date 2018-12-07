@@ -14,8 +14,8 @@ function BST(rootNode) {
 // definitions for APIs available to BST prototype
 
 // std error message for prototype
-BST.prototype.error = function() {
-    console.log('err');
+BST.prototype.error = function(func) {
+    console.log('err at ' + func);
 };
 
 // for functions that could start at a given node if passed, or the root node if none passed
@@ -77,7 +77,7 @@ BST.prototype.getValue = function(value, node) {
 BST.prototype.find = function(value, node) {
     // check for proper input
     if (!value) {
-        this.error();
+        this.error('find');
         return [];
     }
     node = this.getNode(node);
@@ -106,7 +106,7 @@ BST.prototype.find = function(value, node) {
 BST.prototype.findRecursive = function(value, node) {
     // check for proper input
     if (!value) {
-        this.error();
+        this.error('findRecursive');
         return null;
     }
     node = this.getNode(node);
@@ -184,7 +184,7 @@ BST.prototype.insert = function(value) {
 // O(1) removal of a given node
 BST.prototype.remove = function([node, parent]) {
     if (!node) {
-        this.error();
+        this.error('remove');
         return false;
     }
     

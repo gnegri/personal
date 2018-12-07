@@ -4,16 +4,16 @@ function LLNode(value) {
     this.next = null;
 };
 
-LLNode.prototype.error = function() {
-    console.log('err');
+LLNode.prototype.error = function(func) {
+    console.log('err at ' + func);
 };
 
 // O(n) add node to end of list
 LLNode.prototype.addToEnd = function(value, node) {
     if (!node && value !== null) node = new LLNode(value);
-    else {
-        this.error();
-        return;
+    if (!node) {
+        this.error('addToEnd');
+        return this;
     }
     
     let curNode = this;
@@ -27,9 +27,9 @@ LLNode.prototype.addToEnd = function(value, node) {
 // NEEDS to be called as 'head = head.addToHead(...)'
 LLNode.prototype.addToHead = function(value, node) {
     if (!node && value !== null) node = new LLNode(value);
-    else {
-        this.error();
-        return;
+    if (!node) {
+        this.error('addToHead');
+        return this;
     }
     
     node.next = this;
@@ -39,8 +39,8 @@ LLNode.prototype.addToHead = function(value, node) {
 // O(n) find node object given a specific value
 LLNode.prototype.find = function(value) {
     if (!value) {
-        this.error();
-        return;
+        this.error('find');
+        return [null, null];
     }
     let curNode = this;
     // check head
@@ -74,8 +74,9 @@ LLNode.prototype.pop = function() {
 // NEEDS to be called as 'head = head.delete(...)'
 LLNode.prototype.delete = function(value, [node, predecessor]) {
     if (!node && value !== null) [node, predecessor] = this.find(value);
-    else {
-        this.error();
+    if (!node) {
+        this.error('addAfter');
+        return this;
     }
 
     return this.deleteNode([node, predecessor]); // O(1)

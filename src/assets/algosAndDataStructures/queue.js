@@ -5,6 +5,7 @@ function Node(value) {
 };
 
 // constructor for a stack
+// first in, first out
 function Queue(node) {
     if (node !== null) node.next = null; // force null next node for safety
     this.first = node;

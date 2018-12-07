@@ -5,13 +5,14 @@ function Node(value) {
 };
 
 // constructor for a stack
+// First in, Last out
 function Stack(topNode) {
     this.topNode = topNode;
 };
 
 // placeholder error message for Stack
-Stack.prototype.error = function() {
-    console.log('err');
+Stack.prototype.error = function(func) {
+    console.log('err at ' + func);
 };
 
 // iterator
@@ -25,7 +26,6 @@ Stack.prototype.iterator = function*() {
 // O(1)
 Stack.prototype.pop = function() {
     if (this.isEmpty()) {
-        this.error();
         return null;
     }
     const ret = this.peek();
@@ -36,7 +36,6 @@ Stack.prototype.pop = function() {
 // O(1)
 Stack.prototype.peek = function() {
     if (this.isEmpty()) {
-        this.error();
         return null;
     }
     return this.topNode.value;
@@ -45,7 +44,7 @@ Stack.prototype.peek = function() {
 // O(1)
 Stack.prototype.push = function(value) {
     if (!value) {
-        this.error();
+        this.error('push');
         return;
     }
     let node = new Node(value);
@@ -57,3 +56,13 @@ Stack.prototype.push = function(value) {
 Stack.prototype.isEmpty = function() {
     return !this.topNode;
 };
+
+Stack.prototype.print = function() {
+    while (!this.isEmpty()) {
+        console.log(this.pop());
+    }
+}
+
+Stack.prototype.clear = function() {
+    this.topNode = null;
+}
