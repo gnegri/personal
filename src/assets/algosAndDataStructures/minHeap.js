@@ -1,13 +1,16 @@
 // this defines a min heap
 
 // constructor
-function MinHeap(array = []) {
+export function MinHeap(array = []) {
     this.heap = [...array];
     this.heapSize = array.length;
     this.buildMinHeap();
 };
 
-
+MinHeap.prototype.isEmpty = function() {
+    return (this.heapSize === 0);
+};
+ 
 // O(n logn)
 MinHeap.prototype.buildMinHeap = function() {    
     if (this.heapSize > 0) {

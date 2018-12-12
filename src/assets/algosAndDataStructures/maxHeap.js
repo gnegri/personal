@@ -1,12 +1,15 @@
 // this defines a max heap
 
 // constructor
-function MaxHeap(array = []) {
+export function MaxHeap(array = []) {
     this.heap = [...array];
     this.heapSize = array.length;
     this.buildMaxHeap();
 };
 
+MaxHeap.prototype.isEmpty = function() {
+    return (this.heapSize === 0);
+};
 
 // O(n logn)
 MaxHeap.prototype.buildMaxHeap = function() {    

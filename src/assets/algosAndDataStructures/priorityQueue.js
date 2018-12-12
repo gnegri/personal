@@ -1,5 +1,6 @@
 import * as mh from './minHeap.js';
 
+// fibheap would be marginally better, I think
 export class PriorityQueue extends mh.MinHeap {
     constructor(array = [], labels = new Map()) {
         super(array);
@@ -8,8 +9,12 @@ export class PriorityQueue extends mh.MinHeap {
 
     // adjust insert to allow labels for priority
 	insert(value, label) {
-		this.labels.set(value, label);
+		this.labels.set(label, value);
 		super.insert(value);
+    }
+
+    insertUnique(value, label) {
+        if (!this.hasLabel(label)) this.insert(value, label);
     }
     
     // adjust to return the label for the min as well
@@ -27,10 +32,20 @@ export class PriorityQueue extends mh.MinHeap {
         this.insert(newPriority, label);
     }
 
+    // 
     findLabelByPriority(priority) {
-        for (let label of this.labels.getKeys()) {
+        for (let label of this.labels.keys()) {
             if (this.labels.get(label) === priority) {
                 return label;
+            }
+        }
+    }
+
+    // 
+    hasLabel(label) {
+        for (let key of this.labels.keys()) {
+            if (key === label) {
+                return true;
             }
         }
     }

@@ -6,7 +6,7 @@ function Node(value) {
 
 // constructor for a stack
 // First in, Last out
-function Stack(topNode) {
+export function Stack(topNode) {
     this.topNode = topNode;
 };
 

@@ -7,7 +7,7 @@ function Node(value) {
 };
 
 // constructor for the tree
-function BST(rootNode) {
+export function BST(rootNode) {
     this.root = rootNode;
 };
 

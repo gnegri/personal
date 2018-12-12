@@ -2,7 +2,7 @@ import * as ll from './linkedList.js';
 
 // hash is a map of linked lists; we use ll to resolve collisions
 // key is same; value is linked list
-function HashTable() {
+export function HashTable() {
     this.map = new Map();
 };
 

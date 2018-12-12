@@ -43,7 +43,7 @@ NodeList.prototype.containsEdge = function(head, value) {
 };
 
 NodeList.prototype.getWeight = function(v1, v2) {
-	let node = this.nodeList[v1];
+	let node = this.nodeList[v1.value];
 	while (node) {
 		if (node.value === v2) return node.weight;
 		node = node.next;
@@ -166,4 +166,72 @@ NodeList.prototype._containsCycleHelper = function(node, visited) {
 		}
 	}
 	return false;
+};
+
+class DijkstraHelper {
+	constructor(distance, predecessor) {
+		this.distance = distance;
+		this.predecessor = predecessor;
+	}
+}
+
+NodeList.prototype.initSingleSrc = function(vStart) {
+	const vList = new Map();
+	const initialize = new DijkstraHelper(Number.POSITIVE_INFINITY, null);
+	for (let i = 0; i < this.nodeList.length; i++) {
+		let node = this.nodeList[i];
+		if (typeof node !== 'undefined') {
+			vList.set(i, initialize);
+			while (node) {
+				vList.set(node.value, initialize);
+				node = node.next;
+			}
+		}
+	}
+	vList.set(vStart, new DijkstraHelper(0, null));
+	return vList;
+};
+
+NodeList.prototype.relax = function(pq, vList, v1, v2, weight) {
+	const v1Dist = vList.get(v1).distance;
+	const v2Dist = vList.get(v2).distance;
+	const tempWt = v1Dist + weight
+	if (v2Dist > tempWt) {
+		vList.set(v2, new DijkstraHelper(tempWt, v1));
+		pq.insert(tempWt, v2);
+	}
+};
+
+NodeMatrix.prototype.dijkstraParse = function(vStart, vEnd) {
+	const vList = this.dijkstra(vStart);
+	return [vList.get(vEnd).distance, this.constructList(vList, vEnd)];
+};
+
+NodeList.prototype.dijkstra = function(vStart) {
+	const vList = this.initSingleSrc(vStart);
+	const pq = new PriorityQueue();
+	pq.insert(0, vStart);
+	
+	while (!pq.isEmpty()) {
+		const [min, minLabel] = pq.extractMin();
+		let node = this.nodeList[minLabel];
+		if (typeof node !== 'undefined') {
+			while (node) {
+				this.relax(pq, vList, minLabel, node.value, node.weight);
+				node = node.next;
+			}
+		}
+	}
+	// return list of shortest path from vStart to each node
+	return vList;
+};
+
+NodeList.prototype.constructList = function(vList, vEnd) {
+	let traceBack = [vEnd];
+	let node = vList.get(vEnd).predecessor;
+	while (node) {
+		traceBack.push(node);
+		node = vList.get(node).predecessor;
+	}
+	return traceBack.reverse();
 };

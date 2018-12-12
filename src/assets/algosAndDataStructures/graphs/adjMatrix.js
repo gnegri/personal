@@ -137,3 +137,72 @@ NodeMatrix.prototype._containsCycleHelper = function(i, visited) {
 	visited.delete(i);
 	return false;
 };
+
+class DijkstraHelper {
+	constructor(distance, predecessor) {
+		this.distance = distance;
+		this.predecessor = predecessor;
+	}
+}
+
+NodeMatrix.prototype.initSingleSrc = function(vStart) {
+	const vList = new Map();
+	const initialize = new DijkstraHelper(Number.POSITIVE_INFINITY, null);
+	for (let i = 0; i < this.matrix.length; i++) {
+		if (this.containsVertex(i)) {
+			for (let j = 0; j < this.matrix[i].length; j++) {
+				if (this.containsEdge(i, j)) {
+					vList.set(i, initialize);
+					vList.set(j, initialize);
+				}
+			}
+		}
+	}
+	vList.set(vStart, new DijkstraHelper(0, null));
+	return vList;
+};
+
+NodeMatrix.prototype.dijkstraParse = function(vStart, vEnd) {
+	const vList = this.dijkstra(vStart);
+	return [vList.get(vEnd).distance, this.constructList(vList, vEnd)];
+};
+
+NodeMatrix.prototype.dijkstra = function(vStart) {
+	const vList = this.initSingleSrc(vStart);
+	const pq = new PriorityQueue();
+	pq.insert(0, vStart);
+	
+	while (!pq.isEmpty()) {
+		const [, minLabel] = pq.extractMin();
+		if (this.containsVertex(minLabel)) {
+			for (let j = 0; j < this.matrix[minLabel].length; j++) {
+				if (this.containsEdge(minLabel, j)) {
+					this.relax(pq, vList, minLabel, j, this.matrix[minLabel][j]);
+				}
+			}
+		}
+	}
+	
+	// return list of shortest path from vStart to each node
+	return vList;
+};
+
+NodeMatrix.prototype.relax = function(pq, vList, v1, v2, weight) {
+	const v1Dist = vList.get(v1).distance;
+	const v2Dist = vList.get(v2).distance;
+	const tempWt = v1Dist + weight
+	if (v2Dist > tempWt) {
+		vList.set(v2, new DijkstraHelper(tempWt, v1));
+		pq.insert(tempWt, v2);
+	}
+};
+
+NodeMatrix.prototype.constructList = function(vList, vEnd) {
+	let traceBack = [vEnd];
+	let node = vList.get(vEnd).predecessor;
+	while (node) {
+		traceBack.push(node);
+		node = vList.get(node).predecessor;
+	}
+	return traceBack.reverse();
+};
