@@ -1,5 +1,5 @@
 // constructor
-function LLNode(value) {
+export function LLNode(value) {
     this.value = value;
     this.next = null;
 };
@@ -130,4 +130,4 @@ LLNode.prototype.reverseInPlace = function() {
     next.next = ptr;
     
     return head;
-}
+};

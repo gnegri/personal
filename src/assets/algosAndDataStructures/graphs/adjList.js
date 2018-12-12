@@ -35,13 +35,21 @@ NodeList.prototype.add = function(origin, value, weight, node) {
 
 NodeList.prototype.containsEdge = function(head, value) {
     let node = head;
-    if (node.value === value) return true;
-    while (node.next) {
-        node = node.next;
+    while (node) {
         if (node.value === value) return true;
+        node = node.next;
     }
     return false;
-}
+};
+
+NodeList.prototype.getWeight = function(v1, v2) {
+	let node = this.nodeList[v1];
+	while (node) {
+		if (node.value === v2) return node.weight;
+		node = node.next;
+	}
+	return 'no edge'
+};
 
 // insert a node between two others
 NodeList.prototype.insert = function(preValue, preWeight, nodeValue, postWeight, postValue) {
@@ -73,17 +81,15 @@ NodeList.prototype.unLink = function(node, value, i) {
 	}
 };
 
-// if a node hasn't been visited, mark it as such and log that to the console
-// could use a 'visited' flag on node, but we'd need to clear it each time
+// could use a 'visited' flag on node, but we'd need to clear it each time or
+// initialize visited to false and copy the entire array so we can set it without
+// 		mutating the actual array
 // or a 'count' property on nodeList and an incrementing number for 'visited' on node...
 // etc
 NodeList.prototype._printOnce = function(value, visited) {
 	if (!visited.has(value)) {
 		visited.add(value);
         console.log(value);
-        return false; // not visited before this
-	} else {
-        return true; // visited before this
     }
 };
 
@@ -94,48 +100,70 @@ NodeList.prototype.bfs = function() {
 		const node = this.nodeList[i];
 		if (typeof node !== 'undefined') {
 			this._printOnce(i, visited);
-			this._printOnce(node.value, visited);
 			let temp = node;
-			while (temp.next) {
-				temp = temp.next;
+			while (temp) {
 				this._printOnce(temp.value, visited);
+				temp = temp.next;
 			}
 		}
 	}
 };
 
 // print nodes, depth first
-// probably broken
 NodeList.prototype.dfs = function() {
-    const visited = new Set();
+	const visited = new Set();
+
 	for (let i = 0; i < this.nodeList.length; i++) {
-		let node = this.nodeList[i];
+		const node = this.nodeList[i];
 		if (typeof node !== 'undefined') {
 			this._printOnce(i, visited);
 			this._dfsHelper(node, visited);
-			while (node.next) {
-				node = node.next
-				this._dfsHelper(node, visited);
-			}
 		}
-    }
+	}
 };
 NodeList.prototype._dfsHelper = function(node, visited) {
-	this._printOnce(node.value, visited);
-	const next = this.nodeList[node.value];
-    if (next && next.value !== node.value) return this._dfsHelper(next, visited);
+	if (typeof node !== 'undefined') {
+		let temp = node;
+		while (temp !== null) {
+			const val = temp.value;
+			if (!visited.has(val)) {
+				console.log(val);
+				visited.add(val);
+				this._dfsHelper(this.nodeList[val], visited);
+			}
+			temp = temp.next;
+		}
+	}
 };
 
 // dfs
 // if, for any given origin node, we end up revisiting that node...
 // then we have a cycle!
-// TODO: fix
 NodeList.prototype.containsCycle = function() {
+	const visited = new Set();
+
 	for (let i = 0; i < this.nodeList.length; i++) {
-        const visited = new Set();
-        if (this._dfsWrap(i, visited)) {
-            return true;
-        }
+		const node = this.nodeList[i];
+		if (typeof node !== 'undefined') {
+			visited.add(i);
+			if (this._containsCycleHelper(node, visited)) return true;
+		}
     }
     return false;
-}
+};
+NodeList.prototype._containsCycleHelper = function(node, visited) {
+	if (typeof node !== 'undefined') {
+		let temp = node;
+		while (temp !== null) {
+			const val = temp.value;
+			if (visited.has(val)) return true;
+			else {
+				visited.add(val);
+				this._containsCycleHelper(this.nodeList[val], visited);
+			}
+			visited.delete(val);
+			temp = temp.next;
+		}
+	}
+	return false;
+};

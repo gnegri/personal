@@ -1,20 +1,15 @@
+// this defines a max heap
+
 // constructor
-function Heap(array) {
-    if (typeof array === 'undefined') array = [];
+function MaxHeap(array = []) {
     this.heap = [...array];
     this.heapSize = array.length;
     this.buildMaxHeap();
 };
 
-// O(n)
-Heap.prototype.populate = function(array) {
-    for (let value of array) {
-        this.insert(value);
-    }
-};
 
 // O(n logn)
-Heap.prototype.buildMaxHeap = function() {    
+MaxHeap.prototype.buildMaxHeap = function() {    
     if (this.heapSize > 0) {
         for (let index = Math.floor(this.heapSize/2); index >= 0; index--) {
             this.maxHeapify(index);
@@ -23,7 +18,7 @@ Heap.prototype.buildMaxHeap = function() {
 };
 
 // O(logn)
-Heap.prototype.maxHeapify = function(index) {
+MaxHeap.prototype.maxHeapify = function(index) {
     const left = this.left(index);
     const right = this.right(index);
     
@@ -43,22 +38,21 @@ Heap.prototype.maxHeapify = function(index) {
 };
 
 // O(1)
-Heap.prototype.getMax = function() {
+MaxHeap.prototype.getMax = function() {
     return this.heap[0];
 };
 
 // O(logn)
-Heap.prototype.extractMax = function() {
+MaxHeap.prototype.extractMax = function() {
     if (this.heapSize === 0) return null;
     const max = this.getMax();
-    this.heap[0] = this.heap[this.heapSize];
-    this.heapSize--;
+    this.heap[0] = this.heap[--this.heapSize];
     this.maxHeapify(0); // here's where the work is done
     return max;
 };
 
 // O(logn)
-Heap.prototype.insert = function(value) {
+MaxHeap.prototype.insert = function(value) {
     value = Math.max(value, Number.NEGATIVE_INFINITY);
     const tmp = this.heapSize;
     this.heap[tmp] = Number.NEGATIVE_INFINITY;
@@ -67,7 +61,7 @@ Heap.prototype.insert = function(value) {
 };
 
 // O(logn)
-Heap.prototype.incKey = function(index, value) {
+MaxHeap.prototype.incKey = function(index, value) {
     this.heap[index] = value;
     while (index >= 0 && this.heap[this.parent(index)] < this.heap[index]) {
         this.swapIndexes(this.parent(index), index);
@@ -76,28 +70,28 @@ Heap.prototype.incKey = function(index, value) {
 };
 
 // O(1)
-Heap.prototype.swapIndexes = function(index1, index2) {
+MaxHeap.prototype.swapIndexes = function(index1, index2) {
     [this.heap[index1], this.heap[index2]] = [this.heap[index2], this.heap[index1]];
 };
 
 // O(1)
-Heap.prototype.parent = function(index) {
+MaxHeap.prototype.parent = function(index) {
     return Math.floor(index/2);
 };
 
 // O(1)
-Heap.prototype.left = function(index) {
+MaxHeap.prototype.left = function(index) {
     return (index << 1) + 1;
 };
 
 // O(1)
-Heap.prototype.right = function(index) {
+MaxHeap.prototype.right = function(index) {
     return (index << 1) + 2;
 };
 
 // in place sort with copyback
 // O(logn)
-Heap.prototype.sort = function() {
+MaxHeap.prototype.sort = function() {
     let [tmpHeapSize, tmpHeap] = [this.heapSize, [...this.heap]];
     for (let i = this.heapSize - 1; i >= 0; i--) {
         this.swapIndexes(0, i);
@@ -112,6 +106,6 @@ Heap.prototype.sort = function() {
 
 // O(logn)
 let heapsort = (array) => {
-    let heap = new Heap(array);
+    let heap = new MaxHeap(array);
     return heap.sort();
 };

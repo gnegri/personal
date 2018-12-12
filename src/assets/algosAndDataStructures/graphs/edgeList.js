@@ -1,7 +1,6 @@
-import { GraphNode, NodeList } from './adjList';
-
 // can only represent edges between vertices
 // pretty good for undirected graphs but kinda bad O()
+// editorial: this data structure sucks, not worth saving this
 function EdgeMatrix() {
     this.matrix = [];
 };
